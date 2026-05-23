@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <title>
+    Room Booking System
+  </title>
+
+  <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+  <h1>
+    Smart Room Booking System
+  </h1>
+
+  <form action="/book-room" method="GET">
+
+    <label>
+      Room Name
+    </label>
+
+    <select name="room" required>
+
+  <option value="">
+    Select Room
+  </option>
+
+  <option value="Seminar Hall">
+    Seminar Hall
+  </option>
+
+  <option value="Conference Room">
+    Conference Room
+  </option>
+
+  <option value="Lab 1">
+    Lab 1
+  </option>
+
+  <option value="Meeting Room">
+    Meeting Room
+  </option>
+
+</select>
+
+
+    <label>
+      Date
+    </label>
+
+    <input
+      type="date"
+      name="date"
+      required
+    >
+
+    <label>
+      Start Time
+    </label>
+
+    <input
+      type="time"
+      name="start"
+      required
+    >
+
+    <label>
+      End Time
+    </label>
+
+    <input
+      type="time"
+      name="end"
+      required
+    >
+
+    <button type="submit">
+
+      Book Room
+
+    </button>
+
+  </form>
+
+  <br>
+
+  <a href="/bookings">
+
+    View All Bookings
+
+  </a>
+
+</body>
+
+</html>
+</html>
