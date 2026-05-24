@@ -24,6 +24,8 @@
       padding: 30px;
       border-radius: 10px;
 
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+
     }
 
     h1 {
@@ -33,14 +35,25 @@
 
     }
 
-    input, select, button {
+    label {
+
+      font-weight: bold;
+
+    }
+
+    input,
+    select,
+    button {
 
       width: 100%;
       padding: 12px;
       margin-top: 10px;
       margin-bottom: 20px;
+
       border-radius: 5px;
       border: 1px solid gray;
+
+      box-sizing: border-box;
 
     }
 
@@ -50,6 +63,8 @@
       color: white;
       border: none;
       cursor: pointer;
+
+      font-size: 16px;
 
     }
 
@@ -61,8 +76,25 @@
 
     .status {
 
-      font-weight: bold;
       text-align: center;
+      font-weight: bold;
+      margin-bottom: 20px;
+
+    }
+
+    .login-btn {
+
+      display: block;
+      text-align: center;
+      background: green;
+      color: white;
+
+      padding: 12px;
+
+      border-radius: 5px;
+
+      text-decoration: none;
+
       margin-bottom: 20px;
 
     }
@@ -77,11 +109,33 @@
 
     <h1>Room Booking System</h1>
 
-    <form action="/book-room" method="GET">
+    <a
+      class="login-btn"
+      href="/auth/google"
+    >
+      Login With Google
+    </a>
+
+    <form
+      action="/book-room"
+      method="GET"
+    >
+
+      <label>Meeting Title</label>
+
+      <input
+        type="text"
+        name="title"
+        placeholder="Project Discussion"
+        required
+      >
 
       <label>Room</label>
 
-      <select name="room" id="room">
+      <select
+        name="room"
+        id="room"
+      >
 
         <option value="SeminarHall">
           Seminar Hall
@@ -124,11 +178,25 @@
         required
       >
 
-      <div class="status" id="status">
+      <label>Attendee Email</label>
+
+      <input
+        type="email"
+        name="attendee"
+        placeholder="example@gmail.com"
+      >
+
+      <div
+        class="status"
+        id="status"
+      >
 
       </div>
 
-      <button type="button" onclick="checkAvailability()">
+      <button
+        type="button"
+        onclick="checkAvailability()"
+      >
         Check Availability
       </button>
 
@@ -162,7 +230,8 @@
 
       );
 
-      const result = await response.text();
+      const result =
+        await response.text();
 
       const status =
         document.getElementById("status");
