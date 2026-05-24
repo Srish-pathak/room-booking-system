@@ -1,9 +1,11 @@
 require("dotenv").config();
 
 const express = require("express");
+
 const { google } = require("googleapis");
 
 const { Low } = require("lowdb");
+
 const { JSONFile } = require("lowdb/node");
 
 const app = express();
@@ -25,28 +27,35 @@ const db = new Low(adapter, {
 app.use(express.static("public"));
 
 // ==========================
-// GOOGLE OAUTH SETUP
+// GOOGLE OAUTH
 // ==========================
 
-const oauth2Client = new google.auth.OAuth2(
-  process.env.CLIENT_ID,
-  process.env.CLIENT_SECRET,
-  process.env.REDIRECT_URI
-);
+const oauth2Client =
+  new google.auth.OAuth2(
+
+    process.env.CLIENT_ID,
+
+    process.env.CLIENT_SECRET,
+
+    process.env.REDIRECT_URI
+
+  );
 
 // ==========================
-// LOGIN STATUS
+// LOGIN FLAG
 // ==========================
 
 let isAuthenticated = false;
 
 // ==========================
-// HOME PAGE
+// HOME ROUTE
 // ==========================
 
 app.get("/", (req, res) => {
 
-  res.sendFile(__dirname + "/public/index.html");
+  res.sendFile(
+    __dirname + "/public/index.html"
+  );
 
 });
 
@@ -56,15 +65,16 @@ app.get("/", (req, res) => {
 
 app.get("/auth/google", (req, res) => {
 
-  const url = oauth2Client.generateAuthUrl({
+  const url =
+    oauth2Client.generateAuthUrl({
 
-    access_type: "offline",
+      access_type: "offline",
 
-    scope: [
-      "https://www.googleapis.com/auth/calendar"
-    ],
+      scope: [
+        "https://www.googleapis.com/auth/calendar"
+      ],
 
-  });
+    });
 
   res.redirect(url);
 
@@ -74,85 +84,105 @@ app.get("/auth/google", (req, res) => {
 // GOOGLE CALLBACK
 // ==========================
 
-app.get("/auth/google/callback", async (req, res) => {
+app.get(
+  "/auth/google/callback",
 
-  try {
+  async (req, res) => {
 
-    const code = req.query.code;
+    try {
 
-    const { tokens } =
-      await oauth2Client.getToken(code);
+      const code =
+        req.query.code;
 
-    oauth2Client.setCredentials(tokens);
+      const { tokens } =
+        await oauth2Client.getToken(code);
 
-    isAuthenticated = true;
+      oauth2Client.setCredentials(tokens);
 
-    console.log("Google Calendar Connected");
+      isAuthenticated = true;
 
-    res.send(`
+      console.log(
+        "Google Calendar Connected"
+      );
 
-      <html>
+      res.send(`
 
-      <body style="font-family: Arial; padding: 40px;">
+        <html>
 
-        <h2>
-          Google Calendar Connected Successfully!
-        </h2>
+        <body style="font-family: Arial; padding: 40px;">
 
-        <a href="/">
-          Go To Booking Form
-        </a>
+          <h2>
+            Google Calendar Connected Successfully!
+          </h2>
 
-      </body>
+          <a href="/">
+            Go To Booking Form
+          </a>
 
-      </html>
+        </body>
 
-    `);
+        </html>
 
-  } catch (error) {
+      `);
 
-    console.log(error);
+    } catch (error) {
 
-    res.send("Google Authentication Failed");
+      console.log(error);
+
+      res.send(
+        "Google Authentication Failed"
+      );
+
+    }
 
   }
 
-});
+);
 
 // ==========================
 // CHECK AVAILABILITY
 // ==========================
 
-app.get("/check-availability", async (req, res) => {
+app.get(
+  "/check-availability",
 
-  const { room, date, start, end } = req.query;
+  async (req, res) => {
 
-  await db.read();
+    const {
+      room,
+      date,
+      start,
+      end
+    } = req.query;
 
-  const existingBooking =
-    db.data.bookings.find((booking) => {
+    await db.read();
 
-      return (
+    const existingBooking =
+      db.data.bookings.find((booking) => {
 
-        booking.room === room &&
-        booking.date === date &&
+        return (
 
-        start < booking.end &&
-        end > booking.start
+          booking.room === room &&
+          booking.date === date &&
 
-      );
+          start < booking.end &&
+          end > booking.start
 
-    });
+        );
 
-  if (existingBooking) {
+      });
 
-    return res.send("Busy");
+    if (existingBooking) {
+
+      return res.send("Busy");
+
+    }
+
+    res.send("Available");
 
   }
 
-  res.send("Available");
-
-});
+);
 
 // ==========================
 // BOOK ROOM
@@ -160,7 +190,6 @@ app.get("/check-availability", async (req, res) => {
 
 app.get("/book-room", async (req, res) => {
 
-  // LOGIN CHECK
   if (!isAuthenticated) {
 
     return res.send(`
@@ -185,7 +214,16 @@ app.get("/book-room", async (req, res) => {
 
   }
 
-  const { room, date, start, end } = req.query;
+  const {
+
+    title,
+    room,
+    date,
+    start,
+    end,
+    attendee
+
+  } = req.query;
 
   await db.read();
 
@@ -208,8 +246,6 @@ app.get("/book-room", async (req, res) => {
 
     });
 
-  // ROOM ALREADY BOOKED
-
   if (existingBooking) {
 
     return res.send(`
@@ -219,7 +255,7 @@ app.get("/book-room", async (req, res) => {
       <body style="font-family: Arial; padding: 40px;">
 
         <h2>
-          Room already booked for this time!
+          Room already booked!
         </h2>
 
         <a href="/">
@@ -238,12 +274,13 @@ app.get("/book-room", async (req, res) => {
   // GOOGLE CALENDAR
   // ==========================
 
-  const calendar = google.calendar({
+  const calendar =
+    google.calendar({
 
-    version: "v3",
-    auth: oauth2Client,
+      version: "v3",
+      auth: oauth2Client,
 
-  });
+    });
 
   const startDateTime =
     `${date}T${start}:00+05:30`;
@@ -257,38 +294,48 @@ app.get("/book-room", async (req, res) => {
 
   const event = {
 
-    summary: `Room Booking - ${room}`,
+    summary: title,
 
     location: room,
 
-    description: "Room booked successfully",
+    description:
+      "Room booked successfully",
 
     start: {
+
       dateTime: startDateTime,
+
       timeZone: "Asia/Kolkata",
+
     },
 
     end: {
+
       dateTime: endDateTime,
+
       timeZone: "Asia/Kolkata",
+
     },
+
+    attendees: attendee
+      ? [{ email: attendee }]
+      : [],
 
   };
 
   try {
 
     // ==========================
-    // CREATE GOOGLE EVENT
+    // CREATE EVENT
     // ==========================
 
     await calendar.events.insert({
 
       calendarId: "primary",
+
       resource: event,
 
     });
-
-    console.log("Calendar Event Created");
 
     // ==========================
     // SAVE BOOKING
@@ -296,10 +343,12 @@ app.get("/book-room", async (req, res) => {
 
     db.data.bookings.push({
 
+      title,
       room,
       date,
       start,
       end,
+      attendee,
 
     });
 
@@ -360,7 +409,7 @@ app.get("/book-room", async (req, res) => {
 });
 
 // ==========================
-// SHOW ALL BOOKINGS
+// SHOW BOOKINGS
 // ==========================
 
 app.get("/bookings", async (req, res) => {
@@ -389,8 +438,8 @@ app.get("/bookings", async (req, res) => {
 
         table {
 
-          border-collapse: collapse;
           width: 100%;
+          border-collapse: collapse;
           background: white;
 
         }
@@ -409,13 +458,6 @@ app.get("/bookings", async (req, res) => {
 
         }
 
-        a {
-
-          text-decoration: none;
-          color: blue;
-
-        }
-
       </style>
 
     </head>
@@ -427,7 +469,7 @@ app.get("/bookings", async (req, res) => {
       </h1>
 
       <a href="/">
-        Back To Booking Form
+        Back To Home
       </a>
 
       <br><br>
@@ -436,22 +478,25 @@ app.get("/bookings", async (req, res) => {
 
         <tr>
 
+          <th>Title</th>
           <th>Room</th>
           <th>Date</th>
           <th>Start</th>
           <th>End</th>
+          <th>Attendee</th>
           <th>Status</th>
-          <th>Action</th>
 
         </tr>
 
   `;
 
-  db.data.bookings.forEach((booking, index) => {
+  db.data.bookings.forEach((booking) => {
 
     html += `
 
       <tr>
+
+        <td>${booking.title}</td>
 
         <td>${booking.room}</td>
 
@@ -461,15 +506,9 @@ app.get("/bookings", async (req, res) => {
 
         <td>${booking.end}</td>
 
+        <td>${booking.attendee || "-"}</td>
+
         <td>Busy</td>
-
-        <td>
-
-          <a href="/delete-booking/${index}">
-            Cancel
-          </a>
-
-        </td>
 
       </tr>
 
@@ -492,29 +531,13 @@ app.get("/bookings", async (req, res) => {
 });
 
 // ==========================
-// DELETE BOOKING
-// ==========================
-
-app.get("/delete-booking/:id", async (req, res) => {
-
-  const id = req.params.id;
-
-  await db.read();
-
-  db.data.bookings.splice(id, 1);
-
-  await db.write();
-
-  res.redirect("/bookings");
-
-});
-
-// ==========================
 // START SERVER
 // ==========================
 
 app.listen(3000, () => {
 
-  console.log("Server running on port 3000");
+  console.log(
+    "Server running on port 3000"
+  );
 
 });
