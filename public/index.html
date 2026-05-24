@@ -1,100 +1,189 @@
 <!DOCTYPE html>
+
 <html>
 
 <head>
 
-  <title>
-    Room Booking System
-  </title>
+  <title>Room Booking System</title>
 
-  <link rel="stylesheet" href="style.css">
+  <style>
+
+    body {
+
+      font-family: Arial;
+      background: #f4f4f4;
+      padding: 40px;
+
+    }
+
+    .container {
+
+      max-width: 500px;
+      margin: auto;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+
+    }
+
+    h1 {
+
+      text-align: center;
+      color: #333;
+
+    }
+
+    input, select, button {
+
+      width: 100%;
+      padding: 12px;
+      margin-top: 10px;
+      margin-bottom: 20px;
+      border-radius: 5px;
+      border: 1px solid gray;
+
+    }
+
+    button {
+
+      background: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+
+    }
+
+    button:hover {
+
+      background: #0056b3;
+
+    }
+
+    .status {
+
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 20px;
+
+    }
+
+  </style>
 
 </head>
 
 <body>
 
-  <h1>
-    Smart Room Booking System
-  </h1>
+  <div class="container">
 
-  <form action="/book-room" method="GET">
+    <h1>Room Booking System</h1>
 
-    <label>
-      Room Name
-    </label>
+    <form action="/book-room" method="GET">
 
-    <select name="room" required>
+      <label>Room</label>
 
-  <option value="">
-    Select Room
-  </option>
+      <select name="room" id="room">
 
-  <option value="Seminar Hall">
-    Seminar Hall
-  </option>
+        <option value="SeminarHall">
+          Seminar Hall
+        </option>
 
-  <option value="Conference Room">
-    Conference Room
-  </option>
+        <option value="ConferenceRoom">
+          Conference Room
+        </option>
 
-  <option value="Lab 1">
-    Lab 1
-  </option>
+        <option value="Lab101">
+          Lab 101
+        </option>
 
-  <option value="Meeting Room">
-    Meeting Room
-  </option>
+      </select>
 
-</select>
+      <label>Select Date</label>
 
+      <input
+        type="date"
+        name="date"
+        id="date"
+        required
+      >
 
-    <label>
-      Date
-    </label>
+      <label>Start Time</label>
 
-    <input
-      type="date"
-      name="date"
-      required
-    >
+      <input
+        type="time"
+        name="start"
+        id="start"
+        required
+      >
 
-    <label>
-      Start Time
-    </label>
+      <label>End Time</label>
 
-    <input
-      type="time"
-      name="start"
-      required
-    >
+      <input
+        type="time"
+        name="end"
+        id="end"
+        required
+      >
 
-    <label>
-      End Time
-    </label>
+      <div class="status" id="status">
 
-    <input
-      type="time"
-      name="end"
-      required
-    >
+      </div>
 
-    <button type="submit">
+      <button type="button" onclick="checkAvailability()">
+        Check Availability
+      </button>
 
-      Book Room
+      <button type="submit">
+        Book Room
+      </button>
 
-    </button>
+    </form>
 
-  </form>
+  </div>
 
-  <br>
+  <script>
 
-  <a href="/bookings">
+    async function checkAvailability() {
 
-    View All Bookings
+      const room =
+        document.getElementById("room").value;
 
-  </a>
+      const date =
+        document.getElementById("date").value;
+
+      const start =
+        document.getElementById("start").value;
+
+      const end =
+        document.getElementById("end").value;
+
+      const response = await fetch(
+
+        `/check-availability?room=${room}&date=${date}&start=${start}&end=${end}`
+
+      );
+
+      const result = await response.text();
+
+      const status =
+        document.getElementById("status");
+
+      status.innerHTML =
+        `Room Status: ${result}`;
+
+      if (result === "Busy") {
+
+        status.style.color = "red";
+
+      } else {
+
+        status.style.color = "green";
+
+      }
+
+    }
+
+  </script>
 
 </body>
 
-</html>
 </html>
