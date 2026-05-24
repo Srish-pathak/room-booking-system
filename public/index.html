@@ -1,10 +1,8 @@
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
 
 <head>
-
-  <title>IIT BHU Room Booking System</title>
 
   <meta charset="UTF-8">
 
@@ -13,18 +11,22 @@
     content="width=device-width, initial-scale=1.0"
   >
 
-  <!-- Google Font -->
+  <title>
+    IIT BHU Smart Room Booking
+  </title>
+
+  <!-- FONT -->
 
   <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
     rel="stylesheet"
   >
 
-  <!-- Full Calendar CSS -->
+  <!-- ICONS -->
 
   <link
-    href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.css"
     rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
   >
 
   <style>
@@ -39,94 +41,432 @@
 
     body {
 
-      font-family: "Poppins", sans-serif;
+      font-family: "Inter", sans-serif;
 
       background:
         linear-gradient(
           135deg,
+          #020617,
           #0f172a,
-          #1e293b
+          #111827
         );
 
       min-height: 100vh;
 
-      padding: 30px;
+      overflow-x: hidden;
+
+      color: white;
+
+    }
+
+    /* BACKGROUND GLOW */
+
+    .blur1,
+    .blur2 {
+
+      position: absolute;
+
+      border-radius: 50%;
+
+      filter: blur(120px);
+
+      z-index: 0;
+
+    }
+
+    .blur1 {
+
+      width: 350px;
+      height: 350px;
+
+      background: #2563eb;
+
+      top: -100px;
+      left: -100px;
+
+    }
+
+    .blur2 {
+
+      width: 350px;
+      height: 350px;
+
+      background: #7c3aed;
+
+      bottom: -120px;
+      right: -120px;
 
     }
 
     .container {
 
-      max-width: 1200px;
+      position: relative;
+
+      z-index: 2;
+
+      max-width: 1450px;
 
       margin: auto;
 
-      display: grid;
-
-      grid-template-columns: 420px 1fr;
-
-      gap: 30px;
+      padding: 40px;
 
     }
 
-    .booking-box,
-    .calendar-box {
+    /* TOP NAVBAR */
 
-      background: white;
+    .navbar {
+
+      display: flex;
+
+      justify-content: space-between;
+
+      align-items: center;
+
+      margin-bottom: 35px;
+
+    }
+
+    .logo {
+
+      display: flex;
+      align-items: center;
+      gap: 15px;
+
+    }
+
+    .logo-box {
+
+      width: 65px;
+      height: 65px;
 
       border-radius: 20px;
 
-      padding: 30px;
+      background:
+        linear-gradient(
+          135deg,
+          #2563eb,
+          #7c3aed
+        );
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      font-size: 28px;
 
       box-shadow:
-        0 20px 50px rgba(0,0,0,0.2);
+        0 10px 30px rgba(37,99,235,0.4);
 
     }
 
-    .top {
+    .logo-text h1 {
 
-      text-align: center;
+      font-size: 28px;
+      font-weight: 800;
+
+    }
+
+    .logo-text p {
+
+      color: #94a3b8;
+      margin-top: 4px;
+
+    }
+
+    .nav-right {
+
+      display: flex;
+      gap: 15px;
+
+    }
+
+    .nav-btn {
+
+      padding: 13px 20px;
+
+      border-radius: 14px;
+
+      border: none;
+
+      cursor: pointer;
+
+      font-weight: 600;
+
+      background:
+        rgba(255,255,255,0.08);
+
+      color: white;
+
+      transition: 0.3s;
+
+      backdrop-filter: blur(12px);
+
+    }
+
+    .nav-btn:hover {
+
+      transform: translateY(-2px);
+
+      background:
+        rgba(255,255,255,0.14);
+
+    }
+
+    /* HERO */
+
+    .hero {
+
+      display: grid;
+
+      grid-template-columns: 1.1fr 0.9fr;
+
+      gap: 35px;
+
+      align-items: center;
+
+    }
+
+    /* LEFT */
+
+    .left {
+
+      padding-right: 20px;
+
+    }
+
+    .tag {
+
+      display: inline-block;
+
+      padding: 10px 18px;
+
+      border-radius: 50px;
+
+      background:
+        rgba(255,255,255,0.08);
+
+      color: #93c5fd;
+
+      margin-bottom: 22px;
+
+      font-size: 14px;
+
+      border:
+        1px solid rgba(255,255,255,0.08);
+
+    }
+
+    .main-heading {
+
+      font-size: 68px;
+
+      line-height: 1.1;
+
+      font-weight: 800;
 
       margin-bottom: 25px;
 
     }
 
-    .top h1 {
+    .gradient {
 
-      font-size: 30px;
+      background:
+        linear-gradient(
+          135deg,
+          #60a5fa,
+          #a78bfa
+        );
 
-      color: #0f172a;
+      -webkit-background-clip: text;
 
-      margin-bottom: 10px;
+      -webkit-text-fill-color: transparent;
 
     }
 
-    .top p {
+    .desc {
 
-      color: #64748b;
+      font-size: 18px;
+
+      color: #cbd5e1;
+
+      line-height: 1.8;
+
+      max-width: 700px;
+
+      margin-bottom: 35px;
+
+    }
+
+    .stats {
+
+      display: flex;
+
+      gap: 18px;
+
+      margin-bottom: 35px;
+
+    }
+
+    .stat-card {
+
+      flex: 1;
+
+      background:
+        rgba(255,255,255,0.08);
+
+      padding: 22px;
+
+      border-radius: 20px;
+
+      backdrop-filter: blur(12px);
+
+      border:
+        1px solid rgba(255,255,255,0.08);
+
+    }
+
+    .stat-card h2 {
+
+      font-size: 34px;
+
+      margin-bottom: 8px;
+
+    }
+
+    .stat-card p {
+
+      color: #cbd5e1;
+
+    }
+
+    .feature-grid {
+
+      display: grid;
+
+      grid-template-columns: repeat(2,1fr);
+
+      gap: 18px;
+
+    }
+
+    .feature {
+
+      background:
+        rgba(255,255,255,0.08);
+
+      border-radius: 20px;
+
+      padding: 20px;
+
+      border:
+        1px solid rgba(255,255,255,0.08);
+
+      transition: 0.3s;
+
+    }
+
+    .feature:hover {
+
+      transform: translateY(-4px);
+
+      background:
+        rgba(255,255,255,0.12);
+
+    }
+
+    .feature i {
+
+      font-size: 28px;
+
+      margin-bottom: 15px;
+
+      color: #60a5fa;
+
+    }
+
+    .feature h3 {
+
+      margin-bottom: 10px;
+
+      font-size: 18px;
+
+    }
+
+    .feature p {
+
+      color: #cbd5e1;
+
+      font-size: 14px;
+
+      line-height: 1.6;
+
+    }
+
+    /* RIGHT FORM */
+
+    .booking-panel {
+
+      background:
+        rgba(255,255,255,0.08);
+
+      border:
+        1px solid rgba(255,255,255,0.08);
+
+      border-radius: 30px;
+
+      padding: 35px;
+
+      backdrop-filter: blur(18px);
+
+      box-shadow:
+        0 20px 60px rgba(0,0,0,0.35);
+
+    }
+
+    .panel-title {
+
+      font-size: 30px;
+
+      margin-bottom: 10px;
+
+      font-weight: 700;
+
+    }
+
+    .panel-subtitle {
+
+      color: #cbd5e1;
+
+      margin-bottom: 28px;
 
     }
 
     .google-btn {
 
-      display: block;
-
       width: 100%;
 
-      text-align: center;
+      padding: 16px;
 
-      text-decoration: none;
+      border: none;
 
-      background: #16a34a;
+      border-radius: 16px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #16a34a,
+          #22c55e
+        );
 
       color: white;
 
-      padding: 14px;
+      font-size: 16px;
 
-      border-radius: 12px;
+      font-weight: 700;
 
-      font-weight: 600;
+      cursor: pointer;
 
-      margin-bottom: 25px;
+      margin-bottom: 28px;
 
       transition: 0.3s;
 
@@ -134,7 +474,7 @@
 
     .google-btn:hover {
 
-      background: #15803d;
+      transform: translateY(-3px);
 
     }
 
@@ -150,9 +490,9 @@
 
       margin-bottom: 8px;
 
-      font-weight: 600;
+      color: #e2e8f0;
 
-      color: #334155;
+      font-weight: 500;
 
     }
 
@@ -161,25 +501,26 @@
 
       width: 100%;
 
-      padding: 14px;
+      padding: 15px;
 
-      border-radius: 10px;
+      border-radius: 16px;
 
-      border: 1px solid #cbd5e1;
+      border: none;
 
       outline: none;
 
-      transition: 0.3s;
+      background:
+        rgba(255,255,255,0.08);
+
+      color: white;
+
+      font-size: 15px;
 
     }
 
-    .input-group input:focus,
-    .input-group select:focus {
+    .input-group input::placeholder {
 
-      border-color: #2563eb;
-
-      box-shadow:
-        0 0 0 4px rgba(37,99,235,0.15);
+      color: #94a3b8;
 
     }
 
@@ -193,13 +534,30 @@
 
     }
 
+    .status {
+
+      margin-top: 20px;
+
+      padding: 14px;
+
+      border-radius: 14px;
+
+      background:
+        rgba(255,255,255,0.08);
+
+      text-align: center;
+
+      font-weight: 700;
+
+    }
+
     .buttons {
 
       display: flex;
 
       gap: 15px;
 
-      margin-top: 20px;
+      margin-top: 22px;
 
     }
 
@@ -207,15 +565,15 @@
 
       flex: 1;
 
-      padding: 14px;
+      padding: 16px;
 
       border: none;
 
-      border-radius: 10px;
+      border-radius: 16px;
 
       font-size: 15px;
 
-      font-weight: 600;
+      font-weight: 700;
 
       cursor: pointer;
 
@@ -225,45 +583,37 @@
 
     .check-btn {
 
-      background: #f59e0b;
+      background:
+        linear-gradient(
+          135deg,
+          #f59e0b,
+          #ea580c
+        );
 
       color: white;
-
-    }
-
-    .check-btn:hover {
-
-      background: #d97706;
 
     }
 
     .book-btn {
 
-      background: #2563eb;
+      background:
+        linear-gradient(
+          135deg,
+          #2563eb,
+          #7c3aed
+        );
 
       color: white;
 
     }
 
-    .book-btn:hover {
+    .buttons button:hover {
 
-      background: #1d4ed8;
-
-    }
-
-    .status {
-
-      text-align: center;
-
-      margin-top: 15px;
-
-      font-size: 18px;
-
-      font-weight: 700;
+      transform: translateY(-3px);
 
     }
 
-    .footer {
+    .footer-link {
 
       margin-top: 25px;
 
@@ -271,41 +621,67 @@
 
     }
 
-    .footer a {
+    .footer-link a {
+
+      color: #93c5fd;
 
       text-decoration: none;
-
-      color: #2563eb;
 
       font-weight: 600;
 
     }
 
-    #calendar {
+    @media(max-width: 1200px) {
 
-      margin-top: 10px;
-
-    }
-
-    @media(max-width: 950px) {
-
-      .container {
+      .hero {
 
         grid-template-columns: 1fr;
 
       }
 
+      .main-heading {
+
+        font-size: 52px;
+
+      }
+
     }
 
-    @media(max-width: 600px) {
+    @media(max-width: 700px) {
 
-      .row {
+      .container {
+
+        padding: 25px;
+
+      }
+
+      .navbar {
+
+        flex-direction: column;
+        gap: 20px;
+
+      }
+
+      .main-heading {
+
+        font-size: 42px;
+
+      }
+
+      .row,
+      .feature-grid {
 
         grid-template-columns: 1fr;
 
       }
 
       .buttons {
+
+        flex-direction: column;
+
+      }
+
+      .stats {
 
         flex-direction: column;
 
@@ -319,206 +695,385 @@
 
 <body>
 
+  <div class="blur1"></div>
+
+  <div class="blur2"></div>
+
   <div class="container">
 
-    <!-- LEFT SIDE -->
+    <!-- NAVBAR -->
 
-    <div class="booking-box">
+    <div class="navbar">
 
-      <div class="top">
+      <div class="logo">
 
-        <h1>
-          IIT BHU Room Booking
-        </h1>
+        <div class="logo-box">
 
-        <p>
-          Smart Scheduling System
-        </p>
+          <i class="fa-solid fa-building"></i>
+
+        </div>
+
+        <div class="logo-text">
+
+          <h1>
+            IIT BHU Booking
+          </h1>
+
+          <p>
+            Smart Scheduling Platform
+          </p>
+
+        </div>
 
       </div>
 
-      <a
-        href="/auth/google"
-        class="google-btn"
-      >
-        Login With Google
-      </a>
+      <div class="nav-right">
 
-      <form
-        action="/book-room"
-        method="GET"
-      >
-
-        <div class="input-group">
-
-          <label>
-            Meeting Title
-          </label>
-
-          <input
-            type="text"
-            name="title"
-            placeholder="Faculty Meeting"
-            required
-          >
-
-        </div>
-
-        <div class="input-group">
-
-          <label>
-            Room
-          </label>
-
-          <select
-            name="room"
-            id="room"
-          >
-
-            <option value="SeminarHall">
-              Seminar Hall
-            </option>
-
-            <option value="ConferenceRoom">
-              Conference Room
-            </option>
-
-            <option value="Lab101">
-              Lab 101
-            </option>
-
-            <option value="MeetingRoomA">
-              Meeting Room A
-            </option>
-
-          </select>
-
-        </div>
-
-        <div class="row">
-
-          <div class="input-group">
-
-            <label>
-              Date
-            </label>
-
-            <input
-              type="date"
-              name="date"
-              id="date"
-              required
-            >
-
-          </div>
-
-          <div class="input-group">
-
-            <label>
-              Attendee Email
-            </label>
-
-            <input
-              type="email"
-              name="attendee"
-              placeholder="example@gmail.com"
-            >
-
-          </div>
-
-        </div>
-
-        <div class="row">
-
-          <div class="input-group">
-
-            <label>
-              Start Time
-            </label>
-
-            <input
-              type="time"
-              name="start"
-              id="start"
-              required
-            >
-
-          </div>
-
-          <div class="input-group">
-
-            <label>
-              End Time
-            </label>
-
-            <input
-              type="time"
-              name="end"
-              id="end"
-              required
-            >
-
-          </div>
-
-        </div>
-
-        <div
-          class="status"
-          id="status"
+        <button
+          class="nav-btn"
+          onclick="window.location.href='/bookings'"
         >
 
-        </div>
+          View Bookings
 
-        <div class="buttons">
-
-          <button
-            type="button"
-            class="check-btn"
-            onclick="checkAvailability()"
-          >
-            Check Availability
-          </button>
-
-          <button
-            type="submit"
-            class="book-btn"
-          >
-            Book Room
-          </button>
-
-        </div>
-
-      </form>
-
-      <div class="footer">
-
-        <a href="/bookings">
-          View All Bookings
-        </a>
+        </button>
 
       </div>
 
     </div>
 
-    <!-- RIGHT SIDE -->
+    <!-- HERO -->
 
-    <div class="calendar-box">
+    <div class="hero">
 
-      <div id="calendar"></div>
+      <!-- LEFT -->
+
+      <div class="left">
+
+        <div class="tag">
+
+          Smart Campus Scheduling System
+
+        </div>
+
+        <div class="main-heading">
+
+          Book Rooms <br>
+
+          <span class="gradient">
+            Faster & Smarter
+          </span>
+
+        </div>
+
+        <div class="desc">
+
+          Centralized room scheduling platform for IIT BHU faculty and students with Google Calendar integration, smart availability checking, meeting scheduling, and automated attendee invitations.
+
+        </div>
+
+        <!-- STATS -->
+
+        <div class="stats">
+
+          <div class="stat-card">
+
+            <h2>
+              20+
+            </h2>
+
+            <p>
+              Active Rooms
+            </p>
+
+          </div>
+
+          <div class="stat-card">
+
+            <h2>
+              150+
+            </h2>
+
+            <p>
+              Monthly Meetings
+            </p>
+
+          </div>
+
+          <div class="stat-card">
+
+            <h2>
+              99%
+            </h2>
+
+            <p>
+              Scheduling Accuracy
+            </p>
+
+          </div>
+
+        </div>
+
+        <!-- FEATURES -->
+
+        <div class="feature-grid">
+
+          <div class="feature">
+
+            <i class="fa-solid fa-calendar-check"></i>
+
+            <h3>
+              Smart Scheduling
+            </h3>
+
+            <p>
+              Detects room conflicts and prevents overlapping meetings automatically.
+            </p>
+
+          </div>
+
+          <div class="feature">
+
+            <i class="fa-brands fa-google"></i>
+
+            <h3>
+              Google Integration
+            </h3>
+
+            <p>
+              Instantly sync bookings with Google Calendar and send attendee invites.
+            </p>
+
+          </div>
+
+          <div class="feature">
+
+            <i class="fa-solid fa-clock"></i>
+
+            <h3>
+              Real-Time Availability
+            </h3>
+
+            <p>
+              Check room occupancy instantly before scheduling meetings.
+            </p>
+
+          </div>
+
+          <div class="feature">
+
+            <i class="fa-solid fa-shield"></i>
+
+            <h3>
+              Secure Authentication
+            </h3>
+
+            <p>
+              Google OAuth based secure access for faculty scheduling.
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- RIGHT FORM -->
+
+      <div class="booking-panel">
+
+        <div class="panel-title">
+
+          Schedule a Meeting
+
+        </div>
+
+        <div class="panel-subtitle">
+
+          Reserve rooms in seconds.
+
+        </div>
+
+        <button
+          class="google-btn"
+          onclick="window.location.href='/auth/google'"
+        >
+
+          <i class="fa-brands fa-google"></i>
+
+          Login With Google
+
+        </button>
+
+        <form
+          action="/book-room"
+          method="GET"
+        >
+
+          <div class="input-group">
+
+            <label>
+              Meeting Title
+            </label>
+
+            <input
+              type="text"
+              name="title"
+              placeholder="Faculty Discussion"
+              required
+            >
+
+          </div>
+
+          <div class="input-group">
+
+            <label>
+              Select Room
+            </label>
+
+            <select
+              name="room"
+              id="room"
+            >
+
+              <option value="SeminarHall">
+                Seminar Hall
+              </option>
+
+              <option value="ConferenceRoom">
+                Conference Room
+              </option>
+
+              <option value="Lab101">
+                Lab 101
+              </option>
+
+              <option value="MeetingRoomA">
+                Meeting Room A
+              </option>
+
+            </select>
+
+          </div>
+
+          <div class="row">
+
+            <div class="input-group">
+
+              <label>
+                Date
+              </label>
+
+              <input
+                type="date"
+                name="date"
+                id="date"
+                required
+              >
+
+            </div>
+
+            <div class="input-group">
+
+              <label>
+                Attendee Email
+              </label>
+
+              <input
+                type="email"
+                name="attendee"
+                placeholder="faculty@iitbhu.ac.in"
+              >
+
+            </div>
+
+          </div>
+
+          <div class="row">
+
+            <div class="input-group">
+
+              <label>
+                Start Time
+              </label>
+
+              <input
+                type="time"
+                name="start"
+                id="start"
+                required
+              >
+
+            </div>
+
+            <div class="input-group">
+
+              <label>
+                End Time
+              </label>
+
+              <input
+                type="time"
+                name="end"
+                id="end"
+                required
+              >
+
+            </div>
+
+          </div>
+
+          <div
+            class="status"
+            id="status"
+          >
+
+            Room status will appear here
+
+          </div>
+
+          <div class="buttons">
+
+            <button
+              type="button"
+              class="check-btn"
+              onclick="checkAvailability()"
+            >
+
+              Check Availability
+
+            </button>
+
+            <button
+              type="submit"
+              class="book-btn"
+            >
+
+              Book Room
+
+            </button>
+
+          </div>
+
+        </form>
+
+        <div class="footer-link">
+
+          <a href="/bookings">
+
+            View All Bookings
+
+          </a>
+
+        </div>
+
+      </div>
 
     </div>
 
   </div>
 
-  <!-- Full Calendar JS -->
-
-  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
-
   <script>
-
-    // ==========================
-    // CHECK AVAILABILITY
-    // ==========================
 
     async function checkAvailability() {
 
@@ -551,58 +1106,23 @@
 
       if (result === "Busy") {
 
-        status.style.color = "red";
+        status.style.background =
+          "rgba(239,68,68,0.2)";
+
+        status.style.color =
+          "#fca5a5";
 
       } else {
 
-        status.style.color = "green";
+        status.style.background =
+          "rgba(34,197,94,0.2)";
+
+        status.style.color =
+          "#86efac";
 
       }
 
     }
-
-    // ==========================
-    // FULL CALENDAR
-    // ==========================
-
-    document.addEventListener(
-
-      "DOMContentLoaded",
-
-      function () {
-
-        const calendarEl =
-          document.getElementById("calendar");
-
-        const calendar =
-          new FullCalendar.Calendar(
-
-            calendarEl,
-
-            {
-
-              initialView: "dayGridMonth",
-
-              height: 700,
-
-              selectable: true,
-
-              dateClick: function(info) {
-
-                document.getElementById("date").value =
-                  info.dateStr;
-
-              }
-
-            }
-
-          );
-
-        calendar.render();
-
-      }
-
-    );
 
   </script>
 
