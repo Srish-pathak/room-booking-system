@@ -1,795 +1,628 @@
+
+raw
+Iitbhu room booking · HTML
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
-
-  <meta charset="UTF-8">
-
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
-
-  <title>
-    IIT BHU Room Booking
-  </title>
-
-  <!-- FONT -->
-
-  <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-    rel="stylesheet"
-  >
-
-  <!-- ICONS -->
-
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-  >
-
-  <style>
-
-    * {
-
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-
-    }
-
-    body {
-
-      font-family: "Poppins", sans-serif;
-
-      background: #f8fafc;
-
-      min-height: 100vh;
-
-      padding: 40px;
-
-      color: #1e293b;
-
-    }
-
-    .container {
-
-      max-width: 1200px;
-
-      margin: auto;
-
-      display: grid;
-
-      grid-template-columns: 1.1fr 0.9fr;
-
-      gap: 35px;
-
-      align-items: center;
-
-    }
-
-    /* LEFT */
-
-    .left {
-
-      padding-right: 20px;
-
-    }
-
-    .tag {
-
-      display: inline-block;
-
-      background: #e0e7ff;
-
-      color: #4f46e5;
-
-      padding: 10px 18px;
-
-      border-radius: 50px;
-
-      font-size: 14px;
-
-      font-weight: 600;
-
-      margin-bottom: 22px;
-
-    }
-
-    .heading {
-
-      font-size: 62px;
-
-      line-height: 1.1;
-
-      font-weight: 700;
-
-      margin-bottom: 25px;
-
-    }
-
-    .heading span {
-
-      color: #7c3aed;
-
-    }
-
-    .desc {
-
-      font-size: 17px;
-
-      color: #64748b;
-
-      line-height: 1.8;
-
-      margin-bottom: 35px;
-
-    }
-
-    .cards {
-
-      display: grid;
-
-      grid-template-columns: repeat(2,1fr);
-
-      gap: 18px;
-
-    }
-
-    .card {
-
-      background: white;
-
-      border-radius: 24px;
-
-      padding: 22px;
-
-      box-shadow:
-        0 10px 30px rgba(0,0,0,0.06);
-
-      transition: 0.3s;
-
-    }
-
-    .card:hover {
-
-      transform: translateY(-5px);
-
-    }
-
-    .card i {
-
-      font-size: 28px;
-
-      margin-bottom: 15px;
-
-      color: #7c3aed;
-
-    }
-
-    .card h3 {
-
-      margin-bottom: 10px;
-
-      font-size: 18px;
-
-    }
-
-    .card p {
-
-      color: #64748b;
-
-      font-size: 14px;
-
-      line-height: 1.6;
-
-    }
-
-    /* RIGHT */
-
-    .booking-box {
-
-      background: white;
-
-      border-radius: 32px;
-
-      padding: 35px;
-
-      box-shadow:
-        0 20px 50px rgba(0,0,0,0.08);
-
-    }
-
-    .booking-box h2 {
-
-      font-size: 32px;
-
-      margin-bottom: 10px;
-
-    }
-
-    .subtitle {
-
-      color: #64748b;
-
-      margin-bottom: 28px;
-
-    }
-
-    .google-btn {
-
-      width: 100%;
-
-      padding: 15px;
-
-      border: none;
-
-      border-radius: 18px;
-
-      background:
-        linear-gradient(
-          135deg,
-          #8b5cf6,
-          #6366f1
-        );
-
-      color: white;
-
-      font-size: 15px;
-
-      font-weight: 600;
-
-      cursor: pointer;
-
-      margin-bottom: 25px;
-
-      transition: 0.3s;
-
-    }
-
-    .google-btn:hover {
-
-      transform: translateY(-3px);
-
-    }
-
-    .input-group {
-
-      margin-bottom: 18px;
-
-    }
-
-    .input-group label {
-
-      display: block;
-
-      margin-bottom: 8px;
-
-      font-size: 14px;
-
-      font-weight: 500;
-
-    }
-
-    .input-group input,
-    .input-group select {
-
-      width: 100%;
-
-      padding: 15px;
-
-      border-radius: 16px;
-
-      border: 1px solid #e2e8f0;
-
-      outline: none;
-
-      font-size: 15px;
-
-      transition: 0.3s;
-
-      background: #f8fafc;
-
-    }
-
-    .input-group input:focus,
-    .input-group select:focus {
-
-      border-color: #8b5cf6;
-
-      box-shadow:
-        0 0 0 4px rgba(139,92,246,0.12);
-
-    }
-
-    .row {
-
-      display: grid;
-
-      grid-template-columns: 1fr 1fr;
-
-      gap: 15px;
-
-    }
-
-    .status {
-
-      margin-top: 18px;
-
-      padding: 14px;
-
-      border-radius: 16px;
-
-      background: #f8fafc;
-
-      text-align: center;
-
-      font-weight: 600;
-
-    }
-
-    .buttons {
-
-      display: flex;
-
-      gap: 15px;
-
-      margin-top: 20px;
-
-    }
-
-    .buttons button {
-
-      flex: 1;
-
-      padding: 15px;
-
-      border: none;
-
-      border-radius: 16px;
-
-      font-size: 15px;
-
-      font-weight: 600;
-
-      cursor: pointer;
-
-      transition: 0.3s;
-
-    }
-
-    .check-btn {
-
-      background: #f59e0b;
-
-      color: white;
-
-    }
-
-    .book-btn {
-
-      background:
-        linear-gradient(
-          135deg,
-          #8b5cf6,
-          #6366f1
-        );
-
-      color: white;
-
-    }
-
-    .buttons button:hover {
-
-      transform: translateY(-3px);
-
-    }
-
-    .footer {
-
-      margin-top: 25px;
-
-      text-align: center;
-
-    }
-
-    .footer a {
-
-      text-decoration: none;
-
-      color: #7c3aed;
-
-      font-weight: 600;
-
-    }
-
-    @media(max-width: 1000px) {
-
-      .container {
-
-        grid-template-columns: 1fr;
-
-      }
-
-      .heading {
-
-        font-size: 48px;
-
-      }
-
-    }
-
-    @media(max-width: 650px) {
-
-      body {
-
-        padding: 20px;
-
-      }
-
-      .cards,
-      .row {
-
-        grid-template-columns: 1fr;
-
-      }
-
-      .buttons {
-
-        flex-direction: column;
-
-      }
-
-      .heading {
-
-        font-size: 40px;
-
-      }
-
-    }
-
-  </style>
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IIT BHU Room Booking</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0f1117;--surface:#191c26;--surface2:#22263a;--border:#2a2e42;
+  --accent:#7c6af7;--accent2:#f0a500;--text:#e8eaf6;--muted:#6b7099;
+  --green:#22c97a;--red:#f25757;--blue:#4db8ff;--pink:#f472b6;--orange:#fb923c;
+}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);font-size:13px;height:100vh;display:flex;flex-direction:column;overflow:hidden}
+button{font-family:inherit;cursor:pointer}
+ 
+/* TOP BAR */
+.topbar{display:flex;align-items:center;gap:12px;padding:10px 16px;background:var(--surface);border-bottom:1px solid var(--border);flex-shrink:0}
+.logo{font-weight:700;font-size:15px;color:var(--accent);letter-spacing:.5px}
+.loc{background:var(--surface2);border:1px solid var(--border);padding:5px 12px;border-radius:6px;font-size:12px;color:var(--muted)}
+.nav-tabs{display:flex;gap:2px;margin-left:8px}
+.nav-tab{padding:5px 12px;border-radius:5px;font-size:12px;color:var(--muted);cursor:pointer;border:none;background:none;font-family:inherit}
+.nav-tab.active{background:var(--accent);color:#fff}
+.date-nav{display:flex;align-items:center;gap:8px;margin-left:auto}
+.date-nav button{background:var(--surface2);border:1px solid var(--border);color:var(--text);padding:4px 10px;border-radius:5px;font-size:13px}
+.date-label{font-weight:600;font-size:13px}
+.group-btn{background:var(--surface2);border:1px solid var(--border);color:var(--muted);padding:5px 12px;border-radius:5px;font-size:12px}
+.add-btn{background:var(--accent);border:none;color:#fff;padding:5px 14px;border-radius:5px;font-size:12px;font-weight:600}
+ 
+/* FILTER BAR */
+.filter-bar{display:flex;align-items:center;gap:8px;padding:7px 16px;background:var(--surface);border-bottom:1px solid var(--border);flex-shrink:0}
+.filter-chip{display:flex;align-items:center;gap:5px;background:var(--surface2);border:1px solid var(--border);padding:4px 10px;border-radius:20px;font-size:11px;color:var(--muted);cursor:pointer;user-select:none}
+.filter-chip.active{border-color:var(--accent);color:var(--accent)}
+.group-label{margin-left:auto;font-size:11px;color:var(--muted)}
+ 
+/* MAIN LAYOUT */
+.main{display:flex;flex:1;overflow:hidden}
+ 
+/* SIDEBAR */
+.sidebar{width:230px;background:var(--surface);border-right:1px solid var(--border);display:flex;flex-direction:column;flex-shrink:0}
+.sidebar-tabs{display:flex;border-bottom:1px solid var(--border)}
+.s-tab{flex:1;text-align:center;padding:8px 4px;font-size:11px;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;border:none;background:none;font-family:inherit}
+.s-tab.active{color:var(--text);border-bottom:2px solid var(--accent)}
+.sidebar-body{flex:1;overflow-y:auto}
+.section-hdr{display:flex;align-items:center;justify-content:space-between;padding:8px 12px 4px;font-size:11px;color:var(--muted);font-weight:600;letter-spacing:.5px;text-transform:uppercase}
+.section-hdr .badge{background:var(--surface2);padding:1px 6px;border-radius:3px;margin-left:4px}
+.room-item{display:flex;align-items:center;gap:9px;padding:7px 12px;cursor:pointer;border-bottom:1px solid var(--border);transition:background .15s;border-left:3px solid transparent}
+.room-item:hover{background:var(--surface2)}
+.room-item.selected{background:var(--surface2);border-left-color:var(--accent)}
+.avatar{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:11px;flex-shrink:0}
+.room-info{flex:1;min-width:0}
+.room-name{font-size:12px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.room-sub{font-size:11px;color:var(--muted)}
+.cnt-badge{background:var(--surface2);padding:1px 7px;border-radius:3px;font-size:11px;color:var(--muted)}
+ 
+/* TIMELINE */
+.timeline-panel{flex:1;display:flex;flex-direction:column;overflow:hidden}
+.time-header{display:flex;background:var(--surface);border-bottom:1px solid var(--border);flex-shrink:0}
+.th-spacer{width:140px;flex-shrink:0;padding:8px 12px;font-size:11px;color:var(--muted);border-right:1px solid var(--border)}
+.time-cols{flex:1;display:grid;grid-template-columns:repeat(7,1fr)}
+.time-col{text-align:center;padding:8px 4px;font-size:11px;color:var(--muted);border-right:1px solid var(--border)}
+.time-now-col{color:var(--accent);font-weight:700}
+ 
+.timeline-scroll{flex:1;overflow-y:auto;position:relative}
+.tl-section-hdr{display:flex;align-items:center;padding:5px 12px;background:var(--surface2);font-size:11px;font-weight:700;color:var(--muted);letter-spacing:.6px;text-transform:uppercase;border-bottom:1px solid var(--border);cursor:pointer}
+.tl-row{display:flex;border-bottom:1px solid var(--border);min-height:52px;position:relative}
+.tl-row:hover{background:rgba(255,255,255,.01)}
+.tl-label{width:140px;flex-shrink:0;display:flex;align-items:center;gap:8px;padding:6px 12px;border-right:1px solid var(--border);background:var(--surface)}
+.tl-av{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0}
+.tl-label-name{font-size:12px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tl-label-sub{font-size:10px;color:var(--muted)}
+.tl-grid{flex:1;position:relative;display:grid;grid-template-columns:repeat(7,1fr)}
+.tl-cell{border-right:1px solid var(--border);min-height:52px}
+ 
+/* BOOKINGS */
+.booking{position:absolute;top:6px;bottom:6px;border-radius:5px;padding:4px 7px;font-size:10px;font-weight:600;cursor:pointer;overflow:hidden;display:flex;flex-direction:column;justify-content:center;transition:opacity .15s,transform .1s;z-index:2}
+.booking:hover{opacity:.85;transform:translateY(-1px)}
+.b-title{font-size:11px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.b-time{font-size:9px;opacity:.8;margin-top:1px}
+.b-badge{display:inline-block;background:rgba(255,255,255,.22);border-radius:3px;padding:1px 4px;font-size:9px;margin-top:2px;width:fit-content}
+.blocked-slot{position:absolute;top:0;bottom:0;background:repeating-linear-gradient(45deg,#1a1d2a,#1a1d2a 5px,#1e2030 5px,#1e2030 10px);border:1px dashed var(--border);display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:10px;letter-spacing:.5px;z-index:2;border-radius:4px}
+ 
+/* NOW LINE */
+.now-line{position:absolute;top:0;bottom:0;width:2px;background:var(--accent);z-index:10;pointer-events:none}
+.now-dot{width:8px;height:8px;border-radius:50%;background:var(--accent);position:absolute;top:0;left:-3px}
+ 
+/* DETAIL PANEL */
+.detail-panel{width:220px;background:var(--surface);border-left:1px solid var(--border);display:flex;flex-direction:column;flex-shrink:0}
+.dp-header{padding:12px 14px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.dp-title{font-size:13px;font-weight:700;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dp-close{background:none;border:none;color:var(--muted);font-size:18px;line-height:1;padding:0 4px}
+.dp-body{padding:14px;flex:1;overflow-y:auto}
+.dp-badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;margin-bottom:12px}
+.dp-row{margin-bottom:10px}
+.dp-label{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:2px}
+.dp-val{font-size:12px;font-weight:600}
+.dp-guests{display:flex;flex-direction:column;gap:5px;margin-top:4px}
+.dp-guest{display:flex;align-items:center;gap:7px;font-size:11px}
+.dp-gav{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;flex-shrink:0}
+.dp-actions{padding:12px 14px;border-top:1px solid var(--border);display:flex;gap:8px}
+.dp-btn{flex:1;padding:7px;border-radius:5px;font-size:11px;font-weight:700;font-family:inherit}
+.dp-btn.primary{background:var(--accent);color:#fff;border:none}
+.dp-btn.ghost{background:var(--surface2);color:var(--text);border:1px solid var(--border)}
+ 
+/* BOOKING MODAL */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:100;display:none;align-items:center;justify-content:center}
+.modal-overlay.open{display:flex}
+.modal{background:var(--surface);border:1px solid var(--border);border-radius:12px;width:420px;max-width:95vw;padding:28px;position:relative}
+.modal h3{font-size:18px;font-weight:700;margin-bottom:6px}
+.modal .sub{color:var(--muted);font-size:12px;margin-bottom:22px}
+.modal label{display:block;font-size:12px;color:var(--muted);margin-bottom:5px;margin-top:14px}
+.modal input,.modal select{width:100%;background:var(--surface2);border:1px solid var(--border);color:var(--text);padding:10px 12px;border-radius:7px;font-size:13px;font-family:inherit;outline:none;transition:border-color .2s}
+.modal input:focus,.modal select:focus{border-color:var(--accent)}
+.modal-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.modal-actions{display:flex;gap:10px;margin-top:22px}
+.modal-actions button{flex:1;padding:11px;border-radius:7px;font-size:13px;font-weight:600;font-family:inherit}
+.modal-cancel{background:var(--surface2);border:1px solid var(--border);color:var(--text)}
+.modal-submit{background:var(--accent);border:none;color:#fff}
+.modal-close{position:absolute;top:14px;right:14px;background:none;border:none;color:var(--muted);font-size:20px;line-height:1}
+.modal select option{background:var(--surface2)}
+ 
+/* STATUS BAR */
+.status-bar{padding:5px 16px;background:var(--surface);border-top:1px solid var(--border);display:flex;align-items:center;gap:16px;font-size:11px;color:var(--muted);flex-shrink:0}
+.sb-dot{width:7px;height:7px;border-radius:50%;display:inline-block;margin-right:4px}
+ 
+/* DIMMED STATE */
+.tl-row.dimmed{opacity:0.35}
+.tl-row.focus{opacity:1}
+</style>
 </head>
-
 <body>
-
-  <div class="container">
-
-    <!-- LEFT -->
-
-    <div class="left">
-
-      <div class="tag">
-
-        Smart Scheduling Platform
-
-      </div>
-
-      <div class="heading">
-
-        Book Rooms <br>
-
-        <span>
-          Easily & Beautifully
-        </span>
-
-      </div>
-
-      <div class="desc">
-
-        A simple and elegant room booking platform for IIT BHU faculty and students with smart scheduling, Google Calendar integration, and real-time availability checking.
-
-      </div>
-
-      <div class="cards">
-
-        <div class="card">
-
-          <i class="fa-solid fa-calendar-check"></i>
-
-          <h3>
-            Smart Booking
-          </h3>
-
-          <p>
-            Prevents overlapping meetings automatically.
-          </p>
-
-        </div>
-
-        <div class="card">
-
-          <i class="fa-brands fa-google"></i>
-
-          <h3>
-            Google Sync
-          </h3>
-
-          <p>
-            Instantly sync meetings with Google Calendar.
-          </p>
-
-        </div>
-
-        <div class="card">
-
-          <i class="fa-solid fa-clock"></i>
-
-          <h3>
-            Real-Time Status
-          </h3>
-
-          <p>
-            Check room availability before booking.
-          </p>
-
-        </div>
-
-        <div class="card">
-
-          <i class="fa-solid fa-building"></i>
-
-          <h3>
-            Multiple Rooms
-          </h3>
-
-          <p>
-            Manage seminar halls and meeting rooms easily.
-          </p>
-
-        </div>
-
-      </div>
-
-    </div>
-
-    <!-- RIGHT -->
-
-    <div class="booking-box">
-
-      <h2>
-        Schedule a Meeting
-      </h2>
-
-      <div class="subtitle">
-
-        Reserve your room in seconds ✨
-
-      </div>
-
-      <button
-        class="google-btn"
-        onclick="window.location.href='/auth/google'"
-      >
-
-        <i class="fa-brands fa-google"></i>
-
-        Login With Google
-
-      </button>
-
-      <form
-        action="/book-room"
-        method="GET"
-      >
-
-        <div class="input-group">
-
-          <label>
-            Meeting Title
-          </label>
-
-          <input
-            type="text"
-            name="title"
-            placeholder="Faculty Discussion"
-            required
-          >
-
-        </div>
-
-        <div class="input-group">
-
-          <label>
-            Room
-          </label>
-
-          <select
-            name="room"
-            id="room"
-          >
-
-            <option value="SeminarHall">
-              Seminar Hall
-            </option>
-
-            <option value="ConferenceRoom">
-              Conference Room
-            </option>
-
-            <option value="Lab101">
-              Lab 101
-            </option>
-
-            <option value="MeetingRoomA">
-              Meeting Room A
-            </option>
-
-          </select>
-
-        </div>
-
-        <div class="row">
-
-          <div class="input-group">
-
-            <label>
-              Date
-            </label>
-
-            <input
-              type="date"
-              name="date"
-              id="date"
-              required
-            >
-
-          </div>
-
-          <div class="input-group">
-
-            <label>
-              Attendee Email
-            </label>
-
-            <input
-              type="email"
-              name="attendee"
-              placeholder="faculty@iitbhu.ac.in"
-            >
-
-          </div>
-
-        </div>
-
-        <div class="row">
-
-          <div class="input-group">
-
-            <label>
-              Start Time
-            </label>
-
-            <input
-              type="time"
-              name="start"
-              id="start"
-              required
-            >
-
-          </div>
-
-          <div class="input-group">
-
-            <label>
-              End Time
-            </label>
-
-            <input
-              type="time"
-              name="end"
-              id="end"
-              required
-            >
-
-          </div>
-
-        </div>
-
-        <div
-          class="status"
-          id="status"
-        >
-
-          Room status will appear here
-
-        </div>
-
-        <div class="buttons">
-
-          <button
-            type="button"
-            class="check-btn"
-            onclick="checkAvailability()"
-          >
-
-            Check Availability
-
-          </button>
-
-          <button
-            type="submit"
-            class="book-btn"
-          >
-
-            Book Room
-
-          </button>
-
-        </div>
-
-      </form>
-
-      <div class="footer">
-
-        <a href="/bookings">
-
-          View All Bookings
-
-        </a>
-
-      </div>
-
-    </div>
-
+ 
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="logo">IIT BHU Rooms</div>
+  <div class="loc">📍 Main Campus</div>
+  <div class="nav-tabs">
+    <button class="nav-tab active">Timeline</button>
+    <button class="nav-tab">List</button>
+    <button class="nav-tab">Calendar</button>
   </div>
-
-  <script>
-
-    async function checkAvailability() {
-
-      const room =
-        document.getElementById("room").value;
-
-      const date =
-        document.getElementById("date").value;
-
-      const start =
-        document.getElementById("start").value;
-
-      const end =
-        document.getElementById("end").value;
-
-      const response = await fetch(
-
-        `/check-availability?room=${room}&date=${date}&start=${start}&end=${end}`
-
-      );
-
-      const result =
-        await response.text();
-
-      const status =
-        document.getElementById("status");
-
-      status.innerHTML =
-        `Room Status: ${result}`;
-
-      if (result === "Busy") {
-
-        status.style.background =
-          "#fee2e2";
-
-        status.style.color =
-          "#dc2626";
-
-      } else {
-
-        status.style.background =
-          "#dcfce7";
-
-        status.style.color =
-          "#16a34a";
-
+  <div class="date-nav">
+    <button id="prev-day">‹</button>
+    <span class="date-label" id="date-label"></span>
+    <button id="next-day">›</button>
+    <button id="today-btn" style="padding:4px 10px;background:var(--surface2);border:1px solid var(--border);color:var(--text);border-radius:5px;font-size:12px">Today</button>
+  </div>
+  <button class="group-btn">Group: Floor ▾</button>
+  <button class="add-btn" onclick="openModal()">+ New Booking</button>
+</div>
+ 
+<!-- FILTER BAR -->
+<div class="filter-bar">
+  <div class="filter-chip active">≡ All Rooms</div>
+  <div class="filter-chip">👥 Occupancy</div>
+  <div class="filter-chip">⏱ Time Slot</div>
+  <div class="filter-chip">📋 Booking Type</div>
+  <div class="filter-chip">🏢 Department</div>
+  <div class="group-label">GROUP BY: Floor Plan ▾</div>
+</div>
+ 
+<!-- MAIN -->
+<div class="main">
+ 
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <div class="sidebar-tabs">
+      <button class="s-tab active">Rooms</button>
+      <button class="s-tab">Alerts</button>
+      <button class="s-tab">History</button>
+    </div>
+    <div class="sidebar-body">
+      <div class="section-hdr">
+        <span>▾ BOOKED TODAY <span class="badge" id="total-count">0</span></span>
+        <span style="color:var(--accent);cursor:pointer" onclick="openModal()">+</span>
+      </div>
+      <div id="room-list"></div>
+    </div>
+  </div>
+ 
+  <!-- TIMELINE -->
+  <div class="timeline-panel">
+    <div class="time-header">
+      <div class="th-spacer">ROOMS / TIME</div>
+      <div class="time-cols" id="time-header"></div>
+    </div>
+    <div class="timeline-scroll">
+      <div id="timeline-body" style="position:relative"></div>
+    </div>
+  </div>
+ 
+  <!-- DETAIL PANEL -->
+  <div class="detail-panel">
+    <div class="dp-header">
+      <div class="dp-title" id="dp-title">Select a Booking</div>
+      <button class="dp-close" onclick="clearDetail()">×</button>
+    </div>
+    <div class="dp-body" id="dp-body">
+      <p style="color:var(--muted);font-size:12px;margin-top:24px;text-align:center;line-height:1.7">Click any booking block on the timeline to view details.</p>
+    </div>
+    <div class="dp-actions" id="dp-actions" style="display:none">
+      <button class="dp-btn ghost" onclick="editBooking()">Edit</button>
+      <button class="dp-btn primary">Confirm</button>
+    </div>
+  </div>
+ 
+</div>
+ 
+<!-- STATUS BAR -->
+<div class="status-bar">
+  <span><span class="sb-dot" style="background:var(--green)"></span>Available</span>
+  <span><span class="sb-dot" style="background:var(--accent)"></span>Booked</span>
+  <span><span class="sb-dot" style="background:var(--accent2)"></span>Pending</span>
+  <span><span class="sb-dot" style="background:var(--red)"></span>Conflict</span>
+  <span style="margin-left:auto" id="status-summary">6 rooms · 0 bookings today</span>
+</div>
+ 
+<!-- NEW BOOKING MODAL -->
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">×</button>
+    <h3>Schedule a Meeting</h3>
+    <div class="sub">Reserve your room in seconds ✨</div>
+    <label>Meeting Title</label>
+    <input type="text" id="m-title" placeholder="e.g. Faculty Discussion">
+    <label>Room</label>
+    <select id="m-room">
+      <option value="0">Seminar Hall</option>
+      <option value="1">Conference Room</option>
+      <option value="2">Lab 101</option>
+      <option value="3">Meeting Room A</option>
+      <option value="4">Boardroom</option>
+      <option value="5">Lecture Hall</option>
+    </select>
+    <label>Attendee Email</label>
+    <input type="email" id="m-email" placeholder="faculty@iitbhu.ac.in">
+    <div class="modal-row">
+      <div>
+        <label>Start Time</label>
+        <input type="time" id="m-start" value="09:00">
+      </div>
+      <div>
+        <label>End Time</label>
+        <input type="time" id="m-end" value="10:00">
+      </div>
+    </div>
+    <label>Booking Type</label>
+    <select id="m-type">
+      <option>Official</option>
+      <option>Academic</option>
+      <option>Research</option>
+      <option>Lab</option>
+      <option>Admin</option>
+      <option>Demo</option>
+    </select>
+    <div id="m-status" style="margin-top:12px;padding:10px 14px;border-radius:7px;background:var(--surface2);font-size:12px;color:var(--muted);display:none"></div>
+    <div class="modal-actions">
+      <button class="modal-cancel" onclick="checkAvailability()">Check Availability</button>
+      <button class="modal-submit" onclick="addBooking()">Book Room</button>
+    </div>
+  </div>
+</div>
+ 
+<script>
+// ─── DATA ────────────────────────────────────────────────────────────────────
+const ROOMS = [
+  {id:0,name:"Seminar Hall",  cap:"1–150",floor:"Ground", color:"#7c6af7",initials:"SH"},
+  {id:1,name:"Conference Room",cap:"1–20", floor:"Ground", color:"#22c97a",initials:"CR"},
+  {id:2,name:"Lab 101",       cap:"1–30", floor:"First",  color:"#4db8ff",initials:"L1"},
+  {id:3,name:"Meeting Room A",cap:"1–10", floor:"First",  color:"#f472b6",initials:"MA"},
+  {id:4,name:"Boardroom",     cap:"1–25", floor:"Second", color:"#f0a500",initials:"BR"},
+  {id:5,name:"Lecture Hall",  cap:"1–200",floor:"Second", color:"#22c97a",initials:"LH"},
+];
+ 
+const FLOORS = {Ground:[0,1], First:[2,3], Second:[4,5]};
+const TIMES  = ["9:00 AM","10:00 AM","11:00 AM","12:00 PM","1:00 PM","2:00 PM","3:00 PM"];
+const COLS   = 7; // slots (9am–3pm, 1 col = 1hr)
+const DAY_START = 9; // 9 AM
+ 
+let bookings = [
+  {id:1,roomId:0,title:"Dept. Meeting",   start:1,  end:2.5, type:"Official", attendees:"Dr. Sharma, Dr. Mehta",   people:12, color:"#7c6af7"},
+  {id:2,roomId:0,title:"Workshop",        start:3.5,end:5.5, type:"Academic", attendees:"Prof. Rao, Students",      people:40, color:"#f0a500",badge:"VIP"},
+  {id:3,roomId:1,title:"PhD Review",      start:0,  end:1.5, type:"Research", attendees:"Dr. Singh, Rahul K.",     people:6,  color:"#22c97a"},
+  {id:4,roomId:1,title:"Faculty Sync",    start:4,  end:6,   type:"Official", attendees:"All Faculty",             people:15, color:"#f25757"},
+  {id:5,roomId:2,title:"ML Lab Session",  start:1,  end:3,   type:"Lab",      attendees:"Prof. Gupta, Batch B",    people:28, color:"#4db8ff"},
+  {id:6,roomId:2,title:"Project Demo",    start:5,  end:6.5, type:"Demo",     attendees:"Industry Panel",          people:10, color:"#fb923c",badge:"VIP"},
+  {id:7,roomId:3,title:"Thesis Defense",  start:0.5,end:2,   type:"Academic", attendees:"Dr. Joshi, Priya S.",     people:5,  color:"#f472b6"},
+  {id:8,roomId:3,title:"Committee Meet",  start:3,  end:4.5, type:"Official", attendees:"Dean, HoDs",              people:8,  color:"#7c6af7"},
+  {id:9,roomId:4,title:"Director Review", start:2,  end:4,   type:"Admin",    attendees:"Director, Registrar",     people:7,  color:"#f0a500",badge:"VIP"},
+  {id:10,roomId:5,title:"Open Lecture",   start:1.5,end:3,   type:"Academic", attendees:"Prof. Verma",             people:120,color:"#22c97a"},
+  {id:11,roomId:5,title:"Blocked",        start:5,  end:7,   type:"Blocked",  blocked:true},
+];
+ 
+let nextId = 12;
+let selectedBooking = null;
+let currentDate = new Date();
+const BOOKING_COLORS = ["#7c6af7","#22c97a","#4db8ff","#f472b6","#f0a500","#fb923c","#f25757"];
+let colorIdx = 0;
+ 
+// ─── DATE NAV ────────────────────────────────────────────────────────────────
+function formatDate(d){
+  return d.toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'});
+}
+function updateDateLabel(){
+  document.getElementById("date-label").textContent = formatDate(currentDate);
+}
+document.getElementById("prev-day").onclick = ()=>{ currentDate.setDate(currentDate.getDate()-1); updateDateLabel(); };
+document.getElementById("next-day").onclick = ()=>{ currentDate.setDate(currentDate.getDate()+1); updateDateLabel(); };
+document.getElementById("today-btn").onclick = ()=>{ currentDate = new Date(); updateDateLabel(); };
+updateDateLabel();
+ 
+// ─── HELPERS ─────────────────────────────────────────────────────────────────
+function fmtTime(h){
+  const base = DAY_START + h;
+  const hr   = Math.floor(base);
+  const mn   = Math.round((base % 1) * 60);
+  const ampm = hr < 12 ? "AM" : "PM";
+  const hr12 = hr > 12 ? hr - 12 : hr;
+  return `${hr12}:${mn.toString().padStart(2,"0")} ${ampm}`;
+}
+function timeToH(t){ // "HH:MM" → offset from DAY_START
+  const [hh,mm] = t.split(":").map(Number);
+  return (hh + mm/60) - DAY_START;
+}
+ 
+// ─── BUILD TIME HEADER ────────────────────────────────────────────────────────
+const timeHeader = document.getElementById("time-header");
+TIMES.forEach((t,i)=>{
+  const d = document.createElement("div");
+  d.className = "time-col" + (i === 3 ? " time-now-col" : "");
+  d.textContent = t;
+  timeHeader.appendChild(d);
+});
+ 
+// ─── BUILD SIDEBAR ────────────────────────────────────────────────────────────
+function buildSidebar(){
+  const list = document.getElementById("room-list");
+  list.innerHTML = "";
+  ROOMS.forEach(r=>{
+    const count = bookings.filter(b=>b.roomId===r.id && !b.blocked).length;
+    const el = document.createElement("div");
+    el.className = "room-item";
+    el.id = "ri-" + r.id;
+    el.innerHTML = `
+      <div class="avatar" style="background:${r.color}22;color:${r.color}">${r.initials}</div>
+      <div class="room-info">
+        <div class="room-name">${r.name}</div>
+        <div class="room-sub">${r.cap} · ${r.floor} Fl.</div>
+      </div>
+      <span class="cnt-badge" id="cnt-${r.id}">${count}</span>`;
+    el.onclick = () => highlightRoom(r.id);
+    list.appendChild(el);
+  });
+  updateCounts();
+}
+ 
+function updateCounts(){
+  let total = 0;
+  ROOMS.forEach(r=>{
+    const count = bookings.filter(b=>b.roomId===r.id && !b.blocked).length;
+    const el = document.getElementById("cnt-"+r.id);
+    if(el) el.textContent = count;
+    total += count;
+  });
+  document.getElementById("total-count").textContent = total;
+  document.getElementById("status-summary").textContent =
+    `${ROOMS.length} rooms · ${total} bookings today`;
+}
+ 
+// ─── BUILD TIMELINE ───────────────────────────────────────────────────────────
+function buildTimeline(){
+  const body = document.getElementById("timeline-body");
+  body.innerHTML = "";
+ 
+  Object.entries(FLOORS).forEach(([floor, ids])=>{
+    const sec = document.createElement("div");
+ 
+    const hdr = document.createElement("div");
+    hdr.className = "tl-section-hdr";
+    hdr.textContent = `▾ ${floor.toUpperCase()} FLOOR`;
+    sec.appendChild(hdr);
+ 
+    ids.forEach(id=>{
+      const r = ROOMS.find(x=>x.id===id);
+      const row = document.createElement("div");
+      row.className = "tl-row";
+      row.id = "tr-" + id;
+ 
+      // label
+      const label = document.createElement("div");
+      label.className = "tl-label";
+      label.innerHTML = `
+        <div class="tl-av" style="background:${r.color}22;color:${r.color}">${r.initials}</div>
+        <div>
+          <div class="tl-label-name">${r.name}</div>
+          <div class="tl-label-sub">${r.cap}</div>
+        </div>`;
+      row.appendChild(label);
+ 
+      // grid
+      const grid = document.createElement("div");
+      grid.className = "tl-grid";
+      grid.id = "tg-" + id;
+      grid.style.position = "relative";
+      for(let c=0;c<COLS;c++){
+        const cell = document.createElement("div");
+        cell.className = "tl-cell";
+        grid.appendChild(cell);
       }
-
-    }
-
-  </script>
-
+ 
+      // bookings for this room
+      bookings.filter(b=>b.roomId===id).forEach(b=>{
+        const el = document.createElement("div");
+        const leftPct = (b.start/COLS*100).toFixed(2)+"%";
+        const widPct  = ((b.end-b.start)/COLS*100).toFixed(2)+"%";
+ 
+        if(b.blocked){
+          el.className = "blocked-slot";
+          el.style.cssText = `left:${leftPct};width:${widPct};top:6px;bottom:6px`;
+          el.textContent = "● BLOCKED";
+        } else {
+          el.className = "booking";
+          el.style.cssText = `left:${leftPct};width:${widPct};background:${b.color}dd;color:#fff`;
+          el.innerHTML = `
+            <div class="b-title">${b.title}</div>
+            <div class="b-time">${fmtTime(b.start)} – ${fmtTime(b.end)}</div>
+            ${b.badge ? `<span class="b-badge">${b.badge}</span>` : ""}`;
+          el.onclick = (e) => { e.stopPropagation(); showDetail(b); };
+        }
+        grid.appendChild(el);
+      });
+ 
+      row.appendChild(grid);
+      sec.appendChild(row);
+    });
+ 
+    body.appendChild(sec);
+  });
+ 
+  // now line at ~11 AM (col 2 of 7 = 28%)
+  const nowLine = document.createElement("div");
+  nowLine.className = "now-line";
+  nowLine.style.left = "42%";
+  nowLine.innerHTML = `<div class="now-dot"></div>`;
+  body.appendChild(nowLine);
+}
+ 
+// ─── DETAIL PANEL ─────────────────────────────────────────────────────────────
+function showDetail(b){
+  selectedBooking = b;
+  const r = ROOMS.find(x=>x.id===b.roomId);
+  document.getElementById("dp-title").textContent = b.title;
+  document.getElementById("dp-body").innerHTML = `
+    <div class="dp-badge" style="background:${b.color}33;color:${b.color}">${b.type}</div>
+    <div class="dp-row"><div class="dp-label">Room</div><div class="dp-val">${r.name}</div></div>
+    <div class="dp-row"><div class="dp-label">Time</div><div class="dp-val">${fmtTime(b.start)} – ${fmtTime(b.end)}</div></div>
+    <div class="dp-row"><div class="dp-label">People</div><div class="dp-val">${b.people || "—"}</div></div>
+    <div class="dp-row">
+      <div class="dp-label">Attendees</div>
+      <div class="dp-guests">
+        ${(b.attendees||"").split(",").map(a=>`
+          <div class="dp-guest">
+            <div class="dp-gav" style="background:${b.color}33;color:${b.color}">${a.trim()[0]||"?"}</div>
+            <span>${a.trim()}</span>
+          </div>`).join("")}
+      </div>
+    </div>
+    <div class="dp-row"><div class="dp-label">Status</div><div class="dp-val" style="color:var(--green)">● Confirmed</div></div>`;
+  document.getElementById("dp-actions").style.display = "flex";
+ 
+  // dim other rows
+  document.querySelectorAll(".tl-row").forEach(el=>{
+    el.className = el.id === "tr-"+b.roomId ? "tl-row focus" : "tl-row dimmed";
+  });
+  document.querySelectorAll(".room-item").forEach(el=>el.classList.remove("selected"));
+  const ri = document.getElementById("ri-"+b.roomId);
+  if(ri) ri.classList.add("selected");
+}
+ 
+function clearDetail(){
+  selectedBooking = null;
+  document.getElementById("dp-title").textContent = "Select a Booking";
+  document.getElementById("dp-body").innerHTML =
+    `<p style="color:var(--muted);font-size:12px;margin-top:24px;text-align:center;line-height:1.7">Click any booking block on the timeline to view details.</p>`;
+  document.getElementById("dp-actions").style.display = "none";
+  document.querySelectorAll(".tl-row").forEach(el=>el.className="tl-row");
+  document.querySelectorAll(".room-item").forEach(el=>el.classList.remove("selected"));
+}
+ 
+function highlightRoom(id){
+  document.querySelectorAll(".room-item").forEach(el=>el.classList.remove("selected"));
+  document.getElementById("ri-"+id)?.classList.add("selected");
+  document.querySelectorAll(".tl-row").forEach(el=>{
+    el.className = el.id === "tr-"+id ? "tl-row focus" : "tl-row dimmed";
+  });
+}
+ 
+function editBooking(){
+  if(!selectedBooking) return;
+  const b = selectedBooking;
+  const r = ROOMS.find(x=>x.id===b.roomId);
+  document.getElementById("m-title").value  = b.title;
+  document.getElementById("m-room").value   = b.roomId;
+  document.getElementById("m-type").value   = b.type;
+  // convert offset back to HH:MM
+  const toHHMM = h => {
+    const total = DAY_START + h;
+    const hh = Math.floor(total);
+    const mm = Math.round((total%1)*60);
+    return `${hh.toString().padStart(2,"0")}:${mm.toString().padStart(2,"0")}`;
+  };
+  document.getElementById("m-start").value = toHHMM(b.start);
+  document.getElementById("m-end").value   = toHHMM(b.end);
+  // remove and re-add
+  bookings = bookings.filter(x=>x.id!==b.id);
+  clearDetail();
+  openModal();
+}
+ 
+// ─── MODAL ────────────────────────────────────────────────────────────────────
+function openModal(){
+  document.getElementById("modal-overlay").classList.add("open");
+  document.getElementById("m-status").style.display = "none";
+}
+function closeModal(){
+  document.getElementById("modal-overlay").classList.remove("open");
+}
+document.getElementById("modal-overlay").onclick = function(e){
+  if(e.target === this) closeModal();
+};
+ 
+function checkAvailability(){
+  const roomId = parseInt(document.getElementById("m-room").value);
+  const start  = timeToH(document.getElementById("m-start").value);
+  const end    = timeToH(document.getElementById("m-end").value);
+  const statusEl = document.getElementById("m-status");
+  statusEl.style.display = "block";
+ 
+  if(start >= end){
+    statusEl.style.background = "#3d1f1f";
+    statusEl.style.color = "var(--red)";
+    statusEl.textContent = "⚠ End time must be after start time.";
+    return;
+  }
+ 
+  const conflict = bookings.find(b=>
+    b.roomId===roomId && !b.blocked &&
+    !(end <= b.start || start >= b.end)
+  );
+ 
+  if(conflict){
+    statusEl.style.background = "#3d1f1f";
+    statusEl.style.color = "var(--red)";
+    statusEl.textContent = `✗ Room is BUSY — conflicts with "${conflict.title}" (${fmtTime(conflict.start)}–${fmtTime(conflict.end)})`;
+  } else {
+    statusEl.style.background = "#1a3d2a";
+    statusEl.style.color = "var(--green)";
+    statusEl.textContent = "✓ Room is AVAILABLE for this time slot.";
+  }
+}
+ 
+function addBooking(){
+  const title  = document.getElementById("m-title").value.trim();
+  const roomId = parseInt(document.getElementById("m-room").value);
+  const start  = timeToH(document.getElementById("m-start").value);
+  const end    = timeToH(document.getElementById("m-end").value);
+  const type   = document.getElementById("m-type").value;
+  const email  = document.getElementById("m-email").value.trim();
+  const statusEl = document.getElementById("m-status");
+ 
+  if(!title){
+    statusEl.style.display="block";statusEl.style.background="#3d1f1f";
+    statusEl.style.color="var(--red)";statusEl.textContent="⚠ Please enter a meeting title.";
+    return;
+  }
+  if(start>=end){
+    statusEl.style.display="block";statusEl.style.background="#3d1f1f";
+    statusEl.style.color="var(--red)";statusEl.textContent="⚠ End time must be after start time.";
+    return;
+  }
+  if(start<0||end>COLS){
+    statusEl.style.display="block";statusEl.style.background="#3d1f1f";
+    statusEl.style.color="var(--red)";statusEl.textContent="⚠ Booking must be within 9 AM – 4 PM.";
+    return;
+  }
+ 
+  const conflict = bookings.find(b=>
+    b.roomId===roomId && !b.blocked &&
+    !(end<=b.start||start>=b.end)
+  );
+  if(conflict){
+    statusEl.style.display="block";statusEl.style.background="#3d1f1f";
+    statusEl.style.color="var(--red)";
+    statusEl.textContent=`✗ Conflict with "${conflict.title}". Please choose a different time.`;
+    return;
+  }
+ 
+  const color = BOOKING_COLORS[colorIdx % BOOKING_COLORS.length];
+  colorIdx++;
+  bookings.push({
+    id:nextId++, roomId, title, start, end, type,
+    attendees: email||"No attendee", people:1, color
+  });
+ 
+  closeModal();
+  buildSidebar();
+  buildTimeline();
+  clearDetail();
+ 
+  // reset form
+  document.getElementById("m-title").value="";
+  document.getElementById("m-email").value="";
+  document.getElementById("m-start").value="09:00";
+  document.getElementById("m-end").value="10:00";
+  document.getElementById("m-status").style.display="none";
+}
+ 
+// ─── INIT ─────────────────────────────────────────────────────────────────────
+buildSidebar();
+buildTimeline();
+</script>
 </body>
-
 </html>
-
