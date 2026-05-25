@@ -12,7 +12,7 @@
   />
 
   <title>
-    IIT BHU Smart Scheduler
+    IIT BHU Smart Room Scheduler
   </title>
 
   <link
@@ -39,7 +39,7 @@
 
       font-family: "Inter", sans-serif;
 
-      background: #f8fafc;
+      background: #f1f5f9;
 
       color: #0f172a;
 
@@ -61,7 +61,7 @@
 
       top: 0;
 
-      padding: 30px 22px;
+      padding: 30px 20px;
 
       color: white;
 
@@ -89,7 +89,7 @@
 
       flex-direction: column;
 
-      gap: 14px;
+      gap: 12px;
 
     }
 
@@ -149,21 +149,21 @@
 
     }
 
-    .top-left h1 {
+    .title h1 {
 
       font-size: 32px;
 
-      margin-bottom: 8px;
+      margin-bottom: 6px;
 
     }
 
-    .top-left p {
+    .title p {
 
       color: #64748b;
 
     }
 
-    .top-actions {
+    .actions {
 
       display: flex;
 
@@ -225,10 +225,10 @@
 
       border-radius: 18px;
 
-      padding: 22px;
+      padding: 24px;
 
       box-shadow:
-        0 2px 10px rgba(0,0,0,0.04);
+        0 2px 10px rgba(0,0,0,0.05);
 
     }
 
@@ -244,7 +244,7 @@
 
     .stat-card h2 {
 
-      font-size: 28px;
+      font-size: 30px;
 
     }
 
@@ -254,7 +254,7 @@
 
       display: grid;
 
-      grid-template-columns: 1.1fr 0.9fr;
+      grid-template-columns: 1fr 420px;
 
       gap: 25px;
 
@@ -269,13 +269,13 @@
       padding: 25px;
 
       box-shadow:
-        0 2px 10px rgba(0,0,0,0.04);
+        0 2px 10px rgba(0,0,0,0.05);
 
     }
 
     .card-title {
 
-      font-size: 20px;
+      font-size: 22px;
 
       font-weight: 700;
 
@@ -283,7 +283,103 @@
 
     }
 
-    /* MEETINGS */
+    /* CALENDAR */
+
+    .calendar {
+
+      background: #f8fafc;
+
+      border-radius: 18px;
+
+      padding: 20px;
+
+      margin-bottom: 25px;
+
+    }
+
+    .calendar-header {
+
+      display: flex;
+
+      justify-content: space-between;
+
+      align-items: center;
+
+      margin-bottom: 20px;
+
+    }
+
+    .days {
+
+      display: grid;
+
+      grid-template-columns: repeat(7,1fr);
+
+      text-align: center;
+
+      margin-bottom: 10px;
+
+      font-weight: 700;
+
+      color: #64748b;
+
+    }
+
+    .dates {
+
+      display: grid;
+
+      grid-template-columns: repeat(7,1fr);
+
+      gap: 10px;
+
+    }
+
+    .date {
+
+      background: white;
+
+      border-radius: 14px;
+
+      padding: 16px 0;
+
+      text-align: center;
+
+      font-weight: 600;
+
+      border: 1px solid #e2e8f0;
+
+      cursor: pointer;
+
+      transition: 0.3s;
+
+    }
+
+    .date:hover {
+
+      background: #eff6ff;
+
+      border-color: #2563eb;
+
+    }
+
+    .active-date {
+
+      background: #2563eb;
+
+      color: white;
+
+    }
+
+    .booked {
+
+      background: #fee2e2;
+
+      color: #dc2626;
+
+    }
+
+    /* TIMELINE */
 
     .meeting {
 
@@ -311,6 +407,8 @@
 
     .meeting-title {
 
+      font-size: 17px;
+
       font-weight: 700;
 
       margin-bottom: 6px;
@@ -335,7 +433,7 @@
 
       align-items: center;
 
-      padding: 14px 0;
+      padding: 15px 0;
 
       border-bottom: 1px solid #f1f5f9;
 
@@ -387,8 +485,6 @@
 
       gap: 14px;
 
-      margin-top: 20px;
-
     }
 
     input,
@@ -400,9 +496,9 @@
 
       border: 1px solid #cbd5e1;
 
-      font-size: 14px;
-
       outline: none;
+
+      font-size: 14px;
 
     }
 
@@ -463,21 +559,21 @@
 
     @media(max-width: 1200px) {
 
-      .stats {
-
-        grid-template-columns: repeat(2,1fr);
-
-      }
-
       .grid {
 
         grid-template-columns: 1fr;
 
       }
 
+      .stats {
+
+        grid-template-columns: repeat(2,1fr);
+
+      }
+
     }
 
-    @media(max-width: 850px) {
+    @media(max-width: 900px) {
 
       .sidebar {
 
@@ -547,7 +643,7 @@
         target="_blank"
       >
         <i class="fa-solid fa-calendar"></i>
-        Google Calendar
+        Open Calendar
       </a>
 
     </div>
@@ -562,19 +658,19 @@
 
     <div class="topbar">
 
-      <div class="top-left">
+      <div class="title">
 
         <h1>
-          Faculty Room Scheduler
+          Smart Room Scheduler
         </h1>
 
         <p>
-          IIT BHU Department Scheduling System
+          Faculty Meeting & Scheduling Dashboard
         </p>
 
       </div>
 
-      <div class="top-actions">
+      <div class="actions">
 
         <a
           href="/auth/google"
@@ -591,7 +687,7 @@
           class="btn secondary"
         >
 
-          Open Calendar
+          Google Calendar
 
         </a>
 
@@ -606,7 +702,7 @@
       <div class="stat-card">
 
         <small>
-          Today's Meetings
+          Total Meetings
         </small>
 
         <h2>
@@ -661,13 +757,54 @@
 
       <div>
 
-        <!-- TODAY -->
+        <!-- CALENDAR -->
 
         <div class="card">
 
+          <div class="calendar-header">
+
+            <div class="card-title">
+
+              Calendar Schedule
+
+            </div>
+
+            <div
+              id="currentDate"
+              style="
+                color:#64748b;
+                font-weight:600;
+              "
+            ></div>
+
+          </div>
+
+          <div class="calendar">
+
+            <div class="days">
+
+              <div>Sun</div>
+              <div>Mon</div>
+              <div>Tue</div>
+              <div>Wed</div>
+              <div>Thu</div>
+              <div>Fri</div>
+              <div>Sat</div>
+
+            </div>
+
+            <div
+              class="dates"
+              id="dates"
+            ></div>
+
+          </div>
+
+          <!-- TIMELINE -->
+
           <div class="card-title">
 
-            Today's Schedule
+            Today's Meetings
 
           </div>
 
@@ -768,7 +905,8 @@
           <input
             type="text"
             name="faculty"
-            placeholder="Faculty Name"
+            placeholder="Faculty Name / ID"
+            required
           >
 
           <select name="room">
@@ -849,6 +987,79 @@
 
   <script>
 
+    // CALENDAR
+
+    const datesContainer =
+      document.getElementById("dates");
+
+    const currentDate =
+      document.getElementById("currentDate");
+
+    const today =
+      new Date();
+
+    const month =
+      today.toLocaleString("default", {
+        month: "long"
+      });
+
+    const year =
+      today.getFullYear();
+
+    currentDate.innerHTML =
+      `${month} ${year}`;
+
+    const daysInMonth =
+      new Date(
+        year,
+        today.getMonth() + 1,
+        0
+      ).getDate();
+
+    const firstDay =
+      new Date(
+        year,
+        today.getMonth(),
+        1
+      ).getDay();
+
+    for(let i = 0; i < firstDay; i++) {
+
+      datesContainer.innerHTML +=
+        `<div></div>`;
+
+    }
+
+    for(let d = 1; d <= daysInMonth; d++) {
+
+      let className = "date";
+
+      if(d === today.getDate()) {
+
+        className += " active-date";
+
+      }
+
+      if(d === 10 || d === 14 || d === 22) {
+
+        className += " booked";
+
+      }
+
+      datesContainer.innerHTML += `
+
+        <div class="${className}">
+
+          ${d}
+
+        </div>
+
+      `;
+
+    }
+
+    // CHECK AVAILABILITY
+
     async function checkAvailability() {
 
       const room =
@@ -879,6 +1090,8 @@
 
     }
 
+    // LOAD BOOKINGS
+
     async function loadBookings() {
 
       const response =
@@ -890,7 +1103,7 @@
       const timeline =
         document.getElementById("timeline");
 
-      if (bookings.length === 0) {
+      if(bookings.length === 0) {
 
         timeline.innerHTML =
           "<p>No meetings scheduled.</p>";
