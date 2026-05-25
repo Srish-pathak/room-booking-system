@@ -12,12 +12,17 @@
   />
 
   <title>
-    IIT BHU Room Scheduler
+    IIT BHU Smart Scheduler
   </title>
 
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
     rel="stylesheet"
+  />
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
   />
 
   <style>
@@ -34,17 +39,105 @@
 
       font-family: "Inter", sans-serif;
 
-      background: #f1f5f9;
+      background: #f8fafc;
 
       color: #0f172a;
 
     }
 
-    .navbar {
+    /* SIDEBAR */
 
-      background: white;
+    .sidebar {
 
-      padding: 18px 40px;
+      width: 260px;
+
+      height: 100vh;
+
+      background: #0f172a;
+
+      position: fixed;
+
+      left: 0;
+
+      top: 0;
+
+      padding: 30px 22px;
+
+      color: white;
+
+    }
+
+    .logo {
+
+      font-size: 26px;
+
+      font-weight: 700;
+
+      margin-bottom: 40px;
+
+    }
+
+    .logo span {
+
+      color: #60a5fa;
+
+    }
+
+    .menu {
+
+      display: flex;
+
+      flex-direction: column;
+
+      gap: 14px;
+
+    }
+
+    .menu a {
+
+      text-decoration: none;
+
+      color: #cbd5e1;
+
+      padding: 14px 16px;
+
+      border-radius: 12px;
+
+      transition: 0.3s;
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 12px;
+
+      font-size: 15px;
+
+      font-weight: 500;
+
+    }
+
+    .menu a:hover {
+
+      background: #1e293b;
+
+      color: white;
+
+    }
+
+    /* MAIN */
+
+    .main {
+
+      margin-left: 260px;
+
+      padding: 30px;
+
+    }
+
+    /* TOPBAR */
+
+    .topbar {
 
       display: flex;
 
@@ -52,37 +145,29 @@
 
       align-items: center;
 
-      border-bottom: 1px solid #e2e8f0;
-
-      position: sticky;
-
-      top: 0;
-
-      z-index: 100;
+      margin-bottom: 30px;
 
     }
 
-    .logo {
+    .top-left h1 {
 
-      font-size: 24px;
+      font-size: 32px;
 
-      font-weight: 700;
-
-    }
-
-    .logo span {
-
-      color: #2563eb;
+      margin-bottom: 8px;
 
     }
 
-    .nav-right {
+    .top-left p {
+
+      color: #64748b;
+
+    }
+
+    .top-actions {
 
       display: flex;
 
       gap: 15px;
-
-      align-items: center;
 
     }
 
@@ -90,9 +175,9 @@
 
       text-decoration: none;
 
-      padding: 12px 18px;
+      padding: 13px 20px;
 
-      border-radius: 10px;
+      border-radius: 12px;
 
       font-size: 14px;
 
@@ -114,23 +199,62 @@
 
       background: white;
 
-      color: #0f172a;
-
       border: 1px solid #cbd5e1;
+
+      color: #0f172a;
 
     }
 
-    .container {
+    /* STATS */
 
-      max-width: 1400px;
-
-      margin: 30px auto;
-
-      padding: 0 20px;
+    .stats {
 
       display: grid;
 
-      grid-template-columns: 300px 1fr 380px;
+      grid-template-columns: repeat(4,1fr);
+
+      gap: 20px;
+
+      margin-bottom: 30px;
+
+    }
+
+    .stat-card {
+
+      background: white;
+
+      border-radius: 18px;
+
+      padding: 22px;
+
+      box-shadow:
+        0 2px 10px rgba(0,0,0,0.04);
+
+    }
+
+    .stat-card small {
+
+      color: #64748b;
+
+      display: block;
+
+      margin-bottom: 10px;
+
+    }
+
+    .stat-card h2 {
+
+      font-size: 28px;
+
+    }
+
+    /* GRID */
+
+    .grid {
+
+      display: grid;
+
+      grid-template-columns: 1.1fr 0.9fr;
 
       gap: 25px;
 
@@ -140,9 +264,9 @@
 
       background: white;
 
-      border-radius: 18px;
+      border-radius: 20px;
 
-      padding: 24px;
+      padding: 25px;
 
       box-shadow:
         0 2px 10px rgba(0,0,0,0.04);
@@ -155,7 +279,49 @@
 
       font-weight: 700;
 
-      margin-bottom: 22px;
+      margin-bottom: 20px;
+
+    }
+
+    /* MEETINGS */
+
+    .meeting {
+
+      border-left: 4px solid #2563eb;
+
+      background: #f8fafc;
+
+      padding: 18px;
+
+      border-radius: 14px;
+
+      margin-bottom: 15px;
+
+    }
+
+    .meeting-time {
+
+      font-size: 13px;
+
+      color: #64748b;
+
+      margin-bottom: 8px;
+
+    }
+
+    .meeting-title {
+
+      font-weight: 700;
+
+      margin-bottom: 6px;
+
+    }
+
+    .meeting-room {
+
+      color: #475569;
+
+      font-size: 14px;
 
     }
 
@@ -211,48 +377,6 @@
 
     }
 
-    /* SCHEDULE */
-
-    .meeting {
-
-      padding: 18px;
-
-      border-radius: 14px;
-
-      background: #f8fafc;
-
-      margin-bottom: 15px;
-
-      border-left: 5px solid #2563eb;
-
-    }
-
-    .meeting-time {
-
-      font-size: 13px;
-
-      color: #64748b;
-
-      margin-bottom: 6px;
-
-    }
-
-    .meeting-title {
-
-      font-weight: 700;
-
-      margin-bottom: 6px;
-
-    }
-
-    .meeting-room {
-
-      font-size: 14px;
-
-      color: #475569;
-
-    }
-
     /* FORM */
 
     form {
@@ -261,7 +385,9 @@
 
       flex-direction: column;
 
-      gap: 15px;
+      gap: 14px;
+
+      margin-top: 20px;
 
     }
 
@@ -270,7 +396,7 @@
 
       padding: 14px;
 
-      border-radius: 10px;
+      border-radius: 12px;
 
       border: 1px solid #cbd5e1;
 
@@ -293,7 +419,7 @@
 
       padding: 14px;
 
-      border-radius: 10px;
+      border-radius: 12px;
 
       cursor: pointer;
 
@@ -321,47 +447,63 @@
 
     .status-box {
 
-      margin-top: 18px;
+      margin-top: 15px;
 
       padding: 14px;
 
-      border-radius: 10px;
-
-      text-align: center;
+      border-radius: 12px;
 
       background: #f8fafc;
+
+      text-align: center;
 
       font-weight: 600;
 
     }
 
-    .current {
-
-      background: #eff6ff;
-
-      border: 1px solid #bfdbfe;
-
-      border-radius: 14px;
-
-      padding: 18px;
-
-      margin-bottom: 20px;
-
-    }
-
-    .current h3 {
-
-      color: #2563eb;
-
-      margin-bottom: 10px;
-
-    }
-
     @media(max-width: 1200px) {
 
-      .container {
+      .stats {
+
+        grid-template-columns: repeat(2,1fr);
+
+      }
+
+      .grid {
 
         grid-template-columns: 1fr;
+
+      }
+
+    }
+
+    @media(max-width: 850px) {
+
+      .sidebar {
+
+        display: none;
+
+      }
+
+      .main {
+
+        margin-left: 0;
+
+      }
+
+      .stats {
+
+        grid-template-columns: 1fr;
+
+      }
+
+      .topbar {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 20px;
 
       }
 
@@ -373,35 +515,39 @@
 
 <body>
 
-  <!-- NAVBAR -->
+  <!-- SIDEBAR -->
 
-  <div class="navbar">
+  <div class="sidebar">
 
     <div class="logo">
 
-      IIT <span>BHU</span> Room Scheduler
+      IIT <span>BHU</span>
 
     </div>
 
-    <div class="nav-right">
+    <div class="menu">
 
-      <a
-        href="/auth/google"
-        class="btn primary"
-      >
+      <a href="#">
+        <i class="fa-solid fa-house"></i>
+        Dashboard
+      </a>
 
+      <a href="/bookings">
+        <i class="fa-solid fa-calendar-days"></i>
+        Meetings
+      </a>
+
+      <a href="/auth/google">
+        <i class="fa-brands fa-google"></i>
         Connect Google
-
       </a>
 
       <a
         href="https://calendar.google.com"
         target="_blank"
-        class="btn secondary"
       >
-
-        Open Calendar
-
+        <i class="fa-solid fa-calendar"></i>
+        Google Calendar
       </a>
 
     </div>
@@ -410,215 +556,290 @@
 
   <!-- MAIN -->
 
-  <div class="container">
+  <div class="main">
 
-    <!-- LEFT -->
+    <!-- TOPBAR -->
 
-    <div class="card">
+    <div class="topbar">
 
-      <div class="card-title">
+      <div class="top-left">
 
-        Room Status
+        <h1>
+          Faculty Room Scheduler
+        </h1>
 
-      </div>
-
-      <div class="room">
-
-        <div>
-          Seminar Hall
-        </div>
-
-        <div class="status">
-
-          <div class="dot green"></div>
-
-          Available
-
-        </div>
+        <p>
+          IIT BHU Department Scheduling System
+        </p>
 
       </div>
 
-      <div class="room">
+      <div class="top-actions">
 
-        <div>
-          Conference Room
-        </div>
+        <a
+          href="/auth/google"
+          class="btn primary"
+        >
 
-        <div class="status">
+          Connect Google
 
-          <div class="dot red"></div>
+        </a>
 
-          Busy
+        <a
+          href="https://calendar.google.com"
+          target="_blank"
+          class="btn secondary"
+        >
 
-        </div>
+          Open Calendar
 
-      </div>
-
-      <div class="room">
-
-        <div>
-          Lab 101
-        </div>
-
-        <div class="status">
-
-          <div class="dot green"></div>
-
-          Available
-
-        </div>
-
-      </div>
-
-      <div class="room">
-
-        <div>
-          Meeting Room A
-        </div>
-
-        <div class="status">
-
-          <div class="dot green"></div>
-
-          Available
-
-        </div>
+        </a>
 
       </div>
 
     </div>
 
-    <!-- CENTER -->
+    <!-- STATS -->
 
-    <div class="card">
+    <div class="stats">
 
-      <div class="card-title">
+      <div class="stat-card">
 
-        Today's Schedule
+        <small>
+          Today's Meetings
+        </small>
+
+        <h2>
+          12
+        </h2>
 
       </div>
 
-      <div class="current">
+      <div class="stat-card">
 
-        <h3>
-          Ongoing Meeting
-        </h3>
+        <small>
+          Available Rooms
+        </small>
 
-        <div>
-          AI Research Discussion
+        <h2>
+          5
+        </h2>
+
+      </div>
+
+      <div class="stat-card">
+
+        <small>
+          Ongoing Meetings
+        </small>
+
+        <h2>
+          2
+        </h2>
+
+      </div>
+
+      <div class="stat-card">
+
+        <small>
+          Upcoming Events
+        </small>
+
+        <h2>
+          4
+        </h2>
+
+      </div>
+
+    </div>
+
+    <!-- GRID -->
+
+    <div class="grid">
+
+      <!-- LEFT -->
+
+      <div>
+
+        <!-- TODAY -->
+
+        <div class="card">
+
+          <div class="card-title">
+
+            Today's Schedule
+
+          </div>
+
+          <div id="timeline">
+
+            Loading meetings...
+
+          </div>
+
         </div>
 
         <br>
 
-        <small>
-          Conference Room • Till 11:30 AM
-        </small>
+        <!-- ROOM STATUS -->
+
+        <div class="card">
+
+          <div class="card-title">
+
+            Room Availability
+
+          </div>
+
+          <div class="room">
+
+            <div>
+              Seminar Hall
+            </div>
+
+            <div class="status">
+
+              <div class="dot green"></div>
+
+              Available
+
+            </div>
+
+          </div>
+
+          <div class="room">
+
+            <div>
+              Conference Room
+            </div>
+
+            <div class="status">
+
+              <div class="dot red"></div>
+
+              Busy
+
+            </div>
+
+          </div>
+
+          <div class="room">
+
+            <div>
+              Lab 101
+            </div>
+
+            <div class="status">
+
+              <div class="dot green"></div>
+
+              Available
+
+            </div>
+
+          </div>
+
+        </div>
 
       </div>
 
-      <div
-        id="timeline"
-      >
+      <!-- RIGHT -->
 
-        Loading meetings...
+      <div class="card">
 
-      </div>
-
-    </div>
-
-    <!-- RIGHT -->
-
-    <div class="card">
-
-      <div class="card-title">
-
-        Schedule Meeting
-
-      </div>
-
-      <form
-        action="/book-room"
-        method="GET"
-      >
-
-        <input
-          type="text"
-          name="title"
-          placeholder="Meeting Title"
-          required
-        >
-
-        <select name="room">
-
-          <option>
-            Seminar Hall
-          </option>
-
-          <option>
-            Conference Room
-          </option>
-
-          <option>
-            Lab 101
-          </option>
-
-          <option>
-            Meeting Room A
-          </option>
-
-        </select>
-
-        <input
-          type="date"
-          name="date"
-          required
-        >
-
-        <input
-          type="time"
-          name="start"
-          required
-        >
-
-        <input
-          type="time"
-          name="end"
-          required
-        >
-
-        <input
-          type="email"
-          name="attendee"
-          placeholder="Attendee Email"
-        >
-
-        <button
-          type="button"
-          class="check-btn"
-          onclick="checkAvailability()"
-        >
-
-          Check Availability
-
-        </button>
-
-        <button
-          type="submit"
-          class="book-btn"
-        >
+        <div class="card-title">
 
           Schedule Meeting
 
-        </button>
+        </div>
 
-      </form>
+        <form
+          action="/book-room"
+          method="GET"
+        >
 
-      <div
-        class="status-box"
-        id="status"
-      >
+          <input
+            type="text"
+            name="title"
+            placeholder="Meeting Title"
+            required
+          >
 
-        Room status will appear here
+          <input
+            type="text"
+            name="faculty"
+            placeholder="Faculty Name"
+          >
+
+          <select name="room">
+
+            <option>
+              Seminar Hall
+            </option>
+
+            <option>
+              Conference Room
+            </option>
+
+            <option>
+              Lab 101
+            </option>
+
+          </select>
+
+          <input
+            type="date"
+            name="date"
+            required
+          >
+
+          <input
+            type="time"
+            name="start"
+            required
+          >
+
+          <input
+            type="time"
+            name="end"
+            required
+          >
+
+          <input
+            type="email"
+            name="attendee"
+            placeholder="Attendee Email"
+          >
+
+          <button
+            type="button"
+            class="check-btn"
+            onclick="checkAvailability()"
+          >
+
+            Check Availability
+
+          </button>
+
+          <button
+            type="submit"
+            class="book-btn"
+          >
+
+            Schedule Meeting
+
+          </button>
+
+        </form>
+
+        <div
+          class="status-box"
+          id="status"
+        >
+
+          Room status will appear here
+
+        </div>
 
       </div>
 
@@ -654,7 +875,7 @@
 
       document.getElementById("status")
         .innerHTML =
-        "Status : " + result;
+        "Room Status : " + result;
 
     }
 
@@ -672,7 +893,7 @@
       if (bookings.length === 0) {
 
         timeline.innerHTML =
-          "<p>No meetings scheduled today.</p>";
+          "<p>No meetings scheduled.</p>";
 
         return;
 
@@ -688,6 +909,8 @@
 
             <div class="meeting-time">
 
+              ${booking.date}
+              •
               ${booking.start} - ${booking.end}
 
             </div>
