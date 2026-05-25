@@ -4,26 +4,21 @@
 
 <head>
 
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
 
   <meta
     name="viewport"
     content="width=device-width, initial-scale=1.0"
-  >
+  />
 
   <title>
-    IIT BHU Room Booking
+    IIT BHU Room Scheduler
   </title>
 
   <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
     rel="stylesheet"
-  >
-
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-  >
+  />
 
   <style>
 
@@ -37,30 +32,19 @@
 
     body {
 
-      font-family: "Poppins", sans-serif;
+      font-family: "Inter", sans-serif;
 
-      background:
-        linear-gradient(
-          135deg,
-          #0f172a,
-          #111827
-        );
+      background: #f1f5f9;
 
-      color: white;
-
-      padding: 30px;
+      color: #0f172a;
 
     }
 
-    .container {
+    .navbar {
 
-      max-width: 1300px;
+      background: white;
 
-      margin: auto;
-
-    }
-
-    .top {
+      padding: 18px 40px;
 
       display: flex;
 
@@ -68,48 +52,85 @@
 
       align-items: center;
 
-      margin-bottom: 30px;
+      border-bottom: 1px solid #e2e8f0;
+
+      position: sticky;
+
+      top: 0;
+
+      z-index: 100;
 
     }
 
-    .title h1 {
+    .logo {
 
-      font-size: 40px;
+      font-size: 24px;
+
+      font-weight: 700;
 
     }
 
-    .title p {
+    .logo span {
 
-      color: #cbd5e1;
+      color: #2563eb;
+
+    }
+
+    .nav-right {
+
+      display: flex;
+
+      gap: 15px;
+
+      align-items: center;
 
     }
 
     .btn {
 
-      background:
-        linear-gradient(
-          135deg,
-          #8b5cf6,
-          #6366f1
-        );
-
-      padding: 15px 22px;
-
-      border-radius: 18px;
-
-      color: white;
-
       text-decoration: none;
+
+      padding: 12px 18px;
+
+      border-radius: 10px;
+
+      font-size: 14px;
 
       font-weight: 600;
 
+      transition: 0.3s;
+
     }
 
-    .grid {
+    .primary {
+
+      background: #2563eb;
+
+      color: white;
+
+    }
+
+    .secondary {
+
+      background: white;
+
+      color: #0f172a;
+
+      border: 1px solid #cbd5e1;
+
+    }
+
+    .container {
+
+      max-width: 1400px;
+
+      margin: 30px auto;
+
+      padding: 0 20px;
 
       display: grid;
 
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 300px 1fr 380px;
 
       gap: 25px;
 
@@ -117,102 +138,124 @@
 
     .card {
 
-      background:
-        rgba(255,255,255,0.05);
+      background: white;
 
-      border-radius: 30px;
+      border-radius: 18px;
 
-      padding: 30px;
+      padding: 24px;
 
-      border:
-        1px solid rgba(255,255,255,0.08);
-
-    }
-
-    .card h2 {
-
-      margin-bottom: 20px;
+      box-shadow:
+        0 2px 10px rgba(0,0,0,0.04);
 
     }
 
-    form {
+    .card-title {
+
+      font-size: 20px;
+
+      font-weight: 700;
+
+      margin-bottom: 22px;
+
+    }
+
+    /* ROOM STATUS */
+
+    .room {
 
       display: flex;
 
-      flex-direction: column;
+      justify-content: space-between;
 
-      gap: 18px;
+      align-items: center;
 
-    }
+      padding: 14px 0;
 
-    input,
-    select,
-    button {
-
-      padding: 16px;
-
-      border: none;
-
-      border-radius: 16px;
-
-      font-size: 15px;
-
-    }
-
-    input,
-    select {
-
-      background:
-        rgba(255,255,255,0.08);
-
-      color: white;
-
-    }
-
-    button {
-
-      cursor: pointer;
-
-      font-weight: 600;
-
-    }
-
-    .check-btn {
-
-      background: #f59e0b;
-      color: white;
-
-    }
-
-    .book-btn {
-
-      background:
-        linear-gradient(
-          135deg,
-          #8b5cf6,
-          #6366f1
-        );
-
-      color: white;
+      border-bottom: 1px solid #f1f5f9;
 
     }
 
     .status {
 
-      margin-top: 20px;
+      display: flex;
 
-      padding: 15px;
+      align-items: center;
 
-      border-radius: 16px;
+      gap: 8px;
 
-      text-align: center;
+      font-size: 14px;
 
-      background:
-        rgba(255,255,255,0.08);
+      font-weight: 600;
 
     }
 
-    .timeline {
+    .dot {
+
+      width: 10px;
+
+      height: 10px;
+
+      border-radius: 50%;
+
+    }
+
+    .green {
+
+      background: #10b981;
+
+    }
+
+    .red {
+
+      background: #ef4444;
+
+    }
+
+    /* SCHEDULE */
+
+    .meeting {
+
+      padding: 18px;
+
+      border-radius: 14px;
+
+      background: #f8fafc;
+
+      margin-bottom: 15px;
+
+      border-left: 5px solid #2563eb;
+
+    }
+
+    .meeting-time {
+
+      font-size: 13px;
+
+      color: #64748b;
+
+      margin-bottom: 6px;
+
+    }
+
+    .meeting-title {
+
+      font-weight: 700;
+
+      margin-bottom: 6px;
+
+    }
+
+    .meeting-room {
+
+      font-size: 14px;
+
+      color: #475569;
+
+    }
+
+    /* FORM */
+
+    form {
 
       display: flex;
 
@@ -222,26 +265,101 @@
 
     }
 
-    .slot {
+    input,
+    select {
 
-      background:
-        rgba(255,255,255,0.08);
+      padding: 14px;
+
+      border-radius: 10px;
+
+      border: 1px solid #cbd5e1;
+
+      font-size: 14px;
+
+      outline: none;
+
+    }
+
+    input:focus,
+    select:focus {
+
+      border-color: #2563eb;
+
+    }
+
+    button {
+
+      border: none;
+
+      padding: 14px;
+
+      border-radius: 10px;
+
+      cursor: pointer;
+
+      font-weight: 600;
+
+      font-size: 14px;
+
+    }
+
+    .check-btn {
+
+      background: #f59e0b;
+
+      color: white;
+
+    }
+
+    .book-btn {
+
+      background: #2563eb;
+
+      color: white;
+
+    }
+
+    .status-box {
+
+      margin-top: 18px;
+
+      padding: 14px;
+
+      border-radius: 10px;
+
+      text-align: center;
+
+      background: #f8fafc;
+
+      font-weight: 600;
+
+    }
+
+    .current {
+
+      background: #eff6ff;
+
+      border: 1px solid #bfdbfe;
+
+      border-radius: 14px;
 
       padding: 18px;
 
-      border-radius: 18px;
+      margin-bottom: 20px;
 
     }
 
-    .slot strong {
+    .current h3 {
 
-      color: #a78bfa;
+      color: #2563eb;
+
+      margin-bottom: 10px;
 
     }
 
-    @media(max-width: 900px) {
+    @media(max-width: 1200px) {
 
-      .grid {
+      .container {
 
         grid-template-columns: 1fr;
 
@@ -255,157 +373,252 @@
 
 <body>
 
+  <!-- NAVBAR -->
+
+  <div class="navbar">
+
+    <div class="logo">
+
+      IIT <span>BHU</span> Room Scheduler
+
+    </div>
+
+    <div class="nav-right">
+
+      <a
+        href="/auth/google"
+        class="btn primary"
+      >
+
+        Connect Google
+
+      </a>
+
+      <a
+        href="https://calendar.google.com"
+        target="_blank"
+        class="btn secondary"
+      >
+
+        Open Calendar
+
+      </a>
+
+    </div>
+
+  </div>
+
+  <!-- MAIN -->
+
   <div class="container">
 
-    <div class="top">
+    <!-- LEFT -->
 
-      <div class="title">
+    <div class="card">
 
-        <h1>
-          IIT BHU Room Scheduler
-        </h1>
+      <div class="card-title">
 
-        <p>
-          Smart Meeting & Seminar Booking System
-        </p>
+        Room Status
 
       </div>
 
-      <div>
+      <div class="room">
 
-        <a
-          href="/auth/google"
-          class="btn"
-        >
+        <div>
+          Seminar Hall
+        </div>
 
-          Connect Google
+        <div class="status">
 
-        </a>
+          <div class="dot green"></div>
 
-        <a
-          href="https://calendar.google.com"
-          target="_blank"
-          class="btn"
-        >
+          Available
 
-          Open Calendar
+        </div>
 
-        </a>
+      </div>
+
+      <div class="room">
+
+        <div>
+          Conference Room
+        </div>
+
+        <div class="status">
+
+          <div class="dot red"></div>
+
+          Busy
+
+        </div>
+
+      </div>
+
+      <div class="room">
+
+        <div>
+          Lab 101
+        </div>
+
+        <div class="status">
+
+          <div class="dot green"></div>
+
+          Available
+
+        </div>
+
+      </div>
+
+      <div class="room">
+
+        <div>
+          Meeting Room A
+        </div>
+
+        <div class="status">
+
+          <div class="dot green"></div>
+
+          Available
+
+        </div>
 
       </div>
 
     </div>
 
-    <div class="grid">
+    <!-- CENTER -->
 
-      <!-- BOOKING -->
+    <div class="card">
 
-      <div class="card">
+      <div class="card-title">
 
-        <h2>
-          Book A Room
-        </h2>
-
-        <form
-          action="/book-room"
-          method="GET"
-        >
-
-          <input
-            type="text"
-            name="title"
-            placeholder="Meeting Title"
-            required
-          >
-
-          <select name="room">
-
-            <option>
-              Seminar Hall
-            </option>
-
-            <option>
-              Conference Room
-            </option>
-
-            <option>
-              Lab 101
-            </option>
-
-          </select>
-
-          <input
-            type="date"
-            name="date"
-            required
-          >
-
-          <input
-            type="email"
-            name="attendee"
-            placeholder="Attendee Email"
-          >
-
-          <input
-            type="time"
-            name="start"
-            required
-          >
-
-          <input
-            type="time"
-            name="end"
-            required
-          >
-
-          <button
-            type="button"
-            class="check-btn"
-            onclick="checkAvailability()"
-          >
-
-            Check Availability
-
-          </button>
-
-          <button
-            type="submit"
-            class="book-btn"
-          >
-
-            Book Room
-
-          </button>
-
-        </form>
-
-        <div
-          class="status"
-          id="status"
-        >
-
-          Room status will appear here
-
-        </div>
+        Today's Schedule
 
       </div>
 
-      <!-- LIVE BOOKINGS -->
+      <div class="current">
 
-      <div class="card">
+        <h3>
+          Ongoing Meeting
+        </h3>
 
-        <h2>
-          Live Room Schedule
-        </h2>
+        <div>
+          AI Research Discussion
+        </div>
 
-        <div
-          class="timeline"
-          id="timeline"
+        <br>
+
+        <small>
+          Conference Room • Till 11:30 AM
+        </small>
+
+      </div>
+
+      <div
+        id="timeline"
+      >
+
+        Loading meetings...
+
+      </div>
+
+    </div>
+
+    <!-- RIGHT -->
+
+    <div class="card">
+
+      <div class="card-title">
+
+        Schedule Meeting
+
+      </div>
+
+      <form
+        action="/book-room"
+        method="GET"
+      >
+
+        <input
+          type="text"
+          name="title"
+          placeholder="Meeting Title"
+          required
         >
 
-          Loading bookings...
+        <select name="room">
 
-        </div>
+          <option>
+            Seminar Hall
+          </option>
+
+          <option>
+            Conference Room
+          </option>
+
+          <option>
+            Lab 101
+          </option>
+
+          <option>
+            Meeting Room A
+          </option>
+
+        </select>
+
+        <input
+          type="date"
+          name="date"
+          required
+        >
+
+        <input
+          type="time"
+          name="start"
+          required
+        >
+
+        <input
+          type="time"
+          name="end"
+          required
+        >
+
+        <input
+          type="email"
+          name="attendee"
+          placeholder="Attendee Email"
+        >
+
+        <button
+          type="button"
+          class="check-btn"
+          onclick="checkAvailability()"
+        >
+
+          Check Availability
+
+        </button>
+
+        <button
+          type="submit"
+          class="book-btn"
+        >
+
+          Schedule Meeting
+
+        </button>
+
+      </form>
+
+      <div
+        class="status-box"
+        id="status"
+      >
+
+        Room status will appear here
 
       </div>
 
@@ -441,7 +654,7 @@
 
       document.getElementById("status")
         .innerHTML =
-        "Room Status : " + result;
+        "Status : " + result;
 
     }
 
@@ -459,7 +672,7 @@
       if (bookings.length === 0) {
 
         timeline.innerHTML =
-          "<p>No bookings yet</p>";
+          "<p>No meetings scheduled today.</p>";
 
         return;
 
@@ -471,28 +684,25 @@
 
         timeline.innerHTML += `
 
-          <div class="slot">
+          <div class="meeting">
 
-            <strong>
+            <div class="meeting-time">
+
+              ${booking.start} - ${booking.end}
+
+            </div>
+
+            <div class="meeting-title">
+
               ${booking.title}
-            </strong>
 
-            <br><br>
+            </div>
 
-            Room :
-            ${booking.room}
+            <div class="meeting-room">
 
-            <br>
+              ${booking.room}
 
-            Date :
-            ${booking.date}
-
-            <br>
-
-            Time :
-            ${booking.start}
-            -
-            ${booking.end}
+            </div>
 
           </div>
 
